@@ -1,42 +1,19 @@
 package com.mierdasoft.bowlpoolmanager.view;
 
-public class MenuBean
-{
-	private String text;
-	
-	private String url;
-	
-	public MenuBean()
-	{
-		this.text = "Menu Item";
-		
-		this.url = "";
+import java.util.*;
+
+public class MenuBean {
+	private List<MenuItemBean> items;
+
+	public MenuBean() {
+		this.items = new ArrayList<MenuItemBean>();
 	}
-	
-	public MenuBean(String text, String url)
-	{
-		this.text = text;
-		
-		this.url = url;
+
+	public void AddMenuItem(String text, String url) {
+		this.items.add(new MenuItemBean(text, url));
 	}
-	
-	public String GetText()
-	{
-		return this.text;
-	}
-	
-	public String GetUrl()
-	{
-		return this.url;
-	}
-	
-	public void SetText(String text)
-	{
-		this.text = text;
-	}
-	
-	public void SetUrl(String url)
-	{
-		this.url = url;
+
+	public void RemoveMenuItem(MenuItemBean item) {
+		this.items.remove(item);
 	}
 }
