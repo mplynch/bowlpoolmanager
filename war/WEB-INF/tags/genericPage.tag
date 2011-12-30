@@ -4,7 +4,7 @@
 <%@attribute name="menu"%>
 <%@attribute name="pageTitle"%>
 <%@attribute name="copyrightNotice" 
-	type="com.mierdasoft.bowlpoolmanager.view.CopyrightBean"%>
+	type="com.mierdasoft.bowlpoolmanager.model.beans.CopyrightBean"%>
 <html>
 <head>
 <link type="text/css" href="/style.css" rel="stylesheet" />

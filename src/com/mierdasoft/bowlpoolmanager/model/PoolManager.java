@@ -16,6 +16,11 @@ public class PoolManager
 		pools.add(pool);
 	}
 	
+	public Collection<Pool> getPools()
+	{
+		return Collections.unmodifiableCollection(this.pools);
+	}
+	
 	public void RemovePool(Pool pool)
 	{
 		pools.remove(pool);
