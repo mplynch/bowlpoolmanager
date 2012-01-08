@@ -23,12 +23,12 @@ public class ViewPoolCommand implements Command {
 
 		poolManagerDAO = daoFactory.createPoolManagerDAO();
 
-		poolManagerDAO.getPoolManager();
+		poolManagerDAO.getPoolManager();	
 
 		manager = poolManagerDAO.getPoolManager();
 
 		try {
-			Object var = context.getScopedVariable("id", ScopedContext.PAGE);
+			String var = context.getRequest().getParameter("id");
 
 			id = UUID.fromString((String) var);
 
