@@ -1,0 +1,10 @@
+<legend>Current Pools</legend>
+<ul class="unstyled">
+	<li ng-repeat="pool in pools"><a href='#/pools/{{ pool.id }}'>{{pool.name}}</a>
+	</li>
+</ul>
+<form class="form-horizontal">
+	<label for="name">Create A Pool</label> <input name="name" type="text"
+		placeholder="Name" ng-model="pool.name">
+	<button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
+</form>

@@ -1,0 +1,5 @@
+<legend>Players</legend>
+<ul class="unstyled">
+	<li ng-repeat="player in players| orderBy:'name'"><a href='#/players/{{ player.id }}'>{{player.nickname}}</a>
+	</li>
+</ul>

@@ -1,0 +1,21 @@
+<form name="poolForm" class="form-horizontal" ng-controller="PoolDetailCtrl">
+	<legend>Pool Detail</legend>
+	<div class="control-group">
+		<label class="control-label" for="name">Name</label>
+		<div class="controls">
+			<input type="text" name="name" ng-model="pool.name" required>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="id">Id</label>
+		<div class="controls">
+			<input type="text" name="id" ng-model="pool.id" disabled>
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="controls">
+			<button class="btn btn-primary" ng-click="save()">Save</button>
+			<button class="btn btn-danger" ng-click="delete()">Delete</button>
+		</div>
+	</div>
+</form>

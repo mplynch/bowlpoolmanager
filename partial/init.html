@@ -1,0 +1,12 @@
+<div ng-controller="InitCtrl">
+	<legend>Initial Setup</legend>
+	<p class="alert {{statusAlertLevel}}">{{statusMessage}}</p>
+	<form class="form-horizontal">
+		<div class="control-group">
+			<label class="control-label" for="initButton">Database Setup</label>
+			<div class="controls">
+				<button name="initButton" class="btn btn-primary" ng-click="initialize()">Initialize</button>
+			</div>
+		</div>
+	</form>
+</div>
