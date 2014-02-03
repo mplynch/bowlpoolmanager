@@ -1,5 +1,6 @@
 <legend>Current Teams</legend>
 <ul class="unstyled">
-	<li ng-repeat="team in teams | orderBy:'name'"><a href='#/teams/{{ team.id }}'>{{team.name}}</a>
-	</li>
+	<li ng-repeat="team in teams | orderByPriority">
+        <a ng-model="team.$priority" ng-click="view(team)">{{team.name}}</a>
+    </li>
 </ul>

@@ -1,5 +1,6 @@
 <legend>Players</legend>
 <ul class="unstyled">
-	<li ng-repeat="player in players| orderBy:'name'"><a href='#/players/{{ player.id }}'>{{player.nickname}}</a>
-	</li>
+    <li ng-repeat="player in players | orderByPriority">
+        <a ng-model="player.$priority" ng-click="view(player)">{{player.nickname}}</a>
+    </li>
 </ul>

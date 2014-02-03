@@ -1,40 +1,34 @@
-var app = angular.module('bowlpoolmanager', ['BowlPoolManager', 'ui.bootstrap']);
+var app = angular.module('bowlpoolmanager', ['ui.bootstrap', 'firebase', 'ngRoute']);
 
 app.config(function($routeProvider, $locationProvider) {
-	$routeProvider.when('/init', {
-		controller : InitCtrl,
-		templateUrl : '/partial/init.html'
+	$routeProvider.when('/setup', {
+		controller : SetupCtrl,
+		templateUrl : 'partial/setup.html'
 	}).when('/pools', {
-		controller : PoolListCtrl,
-		templateUrl : '/partial/pools.html'
+		controller : PoolCtrl,
+		templateUrl : 'partial/pools.html'
 	}).when('/pools/:id', {
-		controller : PoolDetailCtrl,
-		templateUrl : '/partial/pool.html'
+		controller : PoolCtrl,
+		templateUrl : 'partial/pool.html'
 	}).when('/teams', {
-		controller : TeamListCtrl,
-		templateUrl : '/partial/teams.html'
+		controller : TeamCtrl,
+		templateUrl : 'partial/teams.html'
 	}).when('/teams/:id', {
-		controller : TeamDetailCtrl,
-		templateUrl : '/partial/team.html'
+		controller : TeamCtrl,
+		templateUrl : 'partial/team.html'
 	}).when('/players/:id', {
-		controller : PlayerDetailCtrl,
-		templateUrl : '/partial/player.html'
+		controller : PlayerCtrl,
+		templateUrl : 'partial/player.html'
 	}).when('/players', {
-		controller : PlayerListCtrl,
-		templateUrl : '/partial/players.html'
+		controller : PlayerCtrl,
+		templateUrl : 'partial/players.html'
 	}).when('/404', {
 		controller : ErrorCtrl,
-		templateUrl : '/partial/404.html'
+		templateUrl : 'partial/404.html'
 	}).when('/', {
 		controller : MainCtrl,
-		templateUrl : '/partial/home.html'
+		templateUrl : 'partial/home.html'
 	}).otherwise({
 		redirectTo : '/'
 	});
 });
-
-function init() {
-	angular.element(document).ready(function() {
-		window.init();
-	});
-}
