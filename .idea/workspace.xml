@@ -2,35 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="abafef51-eab8-49a9-b6bf-b4c082c124a1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/bowlpoolmanager.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\js\lib\angular-resource.min.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\js\lib\angular.min.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\js\lib\bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\js\lib\bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\js\lib\jquery-1.9.1.min.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\js\lib\jquery-ui-1.8.16.custom.min.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\js\lib\jquery.min.map" afterPath="" />
-      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\js\lib\ui-bootstrap-tpls-0.7.0.min.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\partial\init.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.project" afterPath="$PROJECT_DIR$/.project" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/partial/reset.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/partial/resetpassword.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/partial/settings.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/partial/signin.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/partial/signup.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/partial/terms.html" />
+      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\css\bootstrap-responsive.css" afterPath="" />
+      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\css\bootstrap-responsive.min.css" afterPath="" />
+      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\css\bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\css\bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\css\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\css\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\css\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\css\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\css\smoothness\images\ui-bg_glass_75_dadada_1x400.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\css\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\css\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\css\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\css\smoothness\images\ui-icons_222222_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\css\smoothness\images\ui-icons_2e83ff_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\css\smoothness\images\ui-icons_454545_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\css\smoothness\images\ui-icons_888888_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\css\smoothness\images\ui-icons_cd0a0a_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\Users\Michael\Documents\GitHub\bowlpoolmanager\css\smoothness\jquery-ui-1.8.16.custom.css" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/controllers.js" afterPath="$PROJECT_DIR$/js/controllers.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partial/home.html" afterPath="$PROJECT_DIR$/partial/home.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partial/player.html" afterPath="$PROJECT_DIR$/partial/player.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partial/players.html" afterPath="$PROJECT_DIR$/partial/players.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/players.json" afterPath="$PROJECT_DIR$/data/players.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partial/pool.html" afterPath="$PROJECT_DIR$/partial/pool.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partial/pools.html" afterPath="$PROJECT_DIR$/partial/pools.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/services.js" afterPath="$PROJECT_DIR$/js/services.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partial/team.html" afterPath="$PROJECT_DIR$/partial/team.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/style.css" afterPath="$PROJECT_DIR$/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partial/teams.html" afterPath="$PROJECT_DIR$/partial/teams.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/teams.json" afterPath="$PROJECT_DIR$/data/teams.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="bowlpoolmanager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -56,18 +60,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="43" selection-start="1975" selection-end="1975" vertical-scroll-proportion="-7.076923" vertical-offset="71" max-vertical-offset="1343">
-              <folding>
-                <element signature="tag#head#0;tag#html#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/partial/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="69" selection-start="215" selection-end="215" vertical-scroll-proportion="0.056792874" vertical-offset="0" max-vertical-offset="898">
+            <state line="24" column="98" selection-start="1002" selection-end="1002" vertical-scroll-proportion="-15.692307" vertical-offset="0" max-vertical-offset="2176">
               <folding />
             </state>
           </provider>
@@ -76,25 +69,42 @@
       <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="31" selection-start="172" selection-end="172" vertical-scroll-proportion="-2.04" vertical-offset="0" max-vertical-offset="663">
+            <state line="36" column="45" selection-start="1386" selection-end="1386" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="controllers.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="39" selection-start="337" selection-end="337" vertical-scroll-proportion="-7.5555553" vertical-offset="17" max-vertical-offset="2839">
+            <state line="19" column="15" selection-start="684" selection-end="684" vertical-scroll-proportion="0.3495671" vertical-offset="0" max-vertical-offset="1326">
+              <folding>
+                <element signature="n#!!block;n#MainCtrl#0" expanded="false" />
+                <element signature="n#!!block;n#PlayerCtrl#0" expanded="false" />
+                <element signature="n#!!block;n#PoolCtrl#0" expanded="false" />
+                <element signature="n#!!block;n#SetupCtrl#0" expanded="false" />
+                <element signature="n#!!block;n#TeamCtrl#0" expanded="false" />
+                <element signature="e#6018#6141#0" expanded="false" />
+                <element signature="e#6207#6409#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="resetpassword.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/partial/resetpassword.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="41" selection-start="169" selection-end="169" vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="442">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="player.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/partial/player.html">
+      <file leaf-file-name="signin.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/partial/signin.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="70" selection-start="459" selection-end="459" vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="595">
+            <state line="5" column="38" selection-start="251" selection-end="251" vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="646">
               <folding />
             </state>
           </provider>
@@ -113,18 +123,28 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/partial/teams.html" />
         <option value="$PROJECT_DIR$/data/teams.json" />
         <option value="$PROJECT_DIR$/data/players.json" />
-        <option value="$PROJECT_DIR$/partial/pools.html" />
         <option value="$PROJECT_DIR$/partial/team.html" />
         <option value="$PROJECT_DIR$/partial/pool.html" />
-        <option value="$PROJECT_DIR$/partial/players.html" />
         <option value="$PROJECT_DIR$/partial/player.html" />
-        <option value="$PROJECT_DIR$/js/app.js" />
-        <option value="$PROJECT_DIR$/js/controllers.js" />
-        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/partial/players.html" />
+        <option value="$PROJECT_DIR$/partial/pools.html" />
+        <option value="$PROJECT_DIR$/partial/teams.html" />
         <option value="$PROJECT_DIR$/partial/home.html" />
+        <option value="$PROJECT_DIR$/partial/toc.html" />
+        <option value="$PROJECT_DIR$/partial/reset.html" />
+        <option value="$PROJECT_DIR$/partial/register.html" />
+        <option value="$PROJECT_DIR$/partial/settings.html" />
+        <option value="$PROJECT_DIR$/partial/terms.html" />
+        <option value="$PROJECT_DIR$/../mplynch.github.io/index.html" />
+        <option value="$PROJECT_DIR$/partial/signup.html" />
+        <option value="$PROJECT_DIR$/css/style.css" />
+        <option value="$PROJECT_DIR$/js/app.js" />
+        <option value="$PROJECT_DIR$/partial/signin.html" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/partial/resetpassword.html" />
+        <option value="$PROJECT_DIR$/js/controllers.js" />
       </list>
     </option>
   </component>
@@ -141,7 +161,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
@@ -160,7 +180,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -207,22 +226,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bowlpoolmanager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bowlpoolmanager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -233,6 +239,9 @@
     <property name="options.searchVisible" value="true" />
     <property name="recentsLimit" value="5" />
     <property name="LayoutCode.rearrangeEntriesJavaScript" value="false" />
+    <property name="FullScreen" value="false" />
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
+    <property name="SearchEverywhereHistory" value="rem" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
@@ -300,13 +309,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3263158" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -318,8 +327,8 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -337,34 +346,107 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="11" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/services.js">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="924">
+        <state line="44" column="37" selection-start="1723" selection-end="1723" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="2091">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="31" selection-start="172" selection-end="172" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="109" column="0" selection-start="3225" selection-end="3225" vertical-scroll-proportion="0.0" vertical-offset="1853" max-vertical-offset="2839">
+          <folding>
+            <element signature="n#!!block;n#MainCtrl#0" expanded="false" />
+            <element signature="n#!!block;n#PlayerCtrl#0" expanded="false" />
+            <element signature="n#!!block;n#PoolCtrl#0" expanded="false" />
+            <element signature="n#!!block;n#SetupCtrl#0" expanded="false" />
+            <element signature="n#!!block;n#TeamCtrl#0" expanded="false" />
+            <element signature="e#6018#6141#0" expanded="false" />
+            <element signature="e#6207#6409#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="1" selection-start="538" selection-end="549" vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="884">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="224" selection-end="224" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1989">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="31" selection-start="172" selection-end="172" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="109" column="0" selection-start="3225" selection-end="3225" vertical-scroll-proportion="0.0" vertical-offset="1853" max-vertical-offset="2839">
+          <folding>
+            <element signature="n#!!block;n#MainCtrl#0" expanded="false" />
+            <element signature="n#!!block;n#PlayerCtrl#0" expanded="false" />
+            <element signature="n#!!block;n#PoolCtrl#0" expanded="false" />
+            <element signature="n#!!block;n#SetupCtrl#0" expanded="false" />
+            <element signature="n#!!block;n#TeamCtrl#0" expanded="false" />
+            <element signature="e#6018#6141#0" expanded="false" />
+            <element signature="e#6207#6409#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partial/teams.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="10" selection-start="0" selection-end="375" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="306">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partial/players.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="121" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/teams.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="56" selection-start="766" selection-end="766" vertical-scroll-proportion="0.18930958" vertical-offset="0" max-vertical-offset="5525">
-          <folding />
-        </state>
+        <state line="10" column="56" selection-start="766" selection-end="766" vertical-scroll-proportion="0.18930958" vertical-offset="0" max-vertical-offset="5525" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/players.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="68" selection-start="68" selection-end="68" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="898">
-          <folding />
-        </state>
+        <state line="0" column="68" selection-start="68" selection-end="68" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="898" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partial/pool.html">
+    <entry file="file://$PROJECT_DIR$/partial/player.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="53" selection-start="0" selection-end="1116" vertical-scroll-proportion="0.09465479" vertical-offset="0" max-vertical-offset="898">
+        <state line="0" column="0" selection-start="0" selection-end="127" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="595" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partial/setup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="924">
           <folding />
         </state>
       </provider>
@@ -376,61 +458,142 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partial/pools.html">
+    <entry file="file://$PROJECT_DIR$/partial/pool.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="9" selection-start="62" selection-end="62" vertical-scroll-proportion="0.037861917" vertical-offset="0" max-vertical-offset="898">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/partial/teams.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="0" selection-end="196" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="204">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/partial/players.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="8" selection-start="8" selection-end="8" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="898">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/partial/player.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="70" selection-start="459" selection-end="459" vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="595">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="39" selection-start="337" selection-end="337" vertical-scroll-proportion="-7.5555553" vertical-offset="17" max-vertical-offset="2839">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="31" selection-start="172" selection-end="172" vertical-scroll-proportion="-2.04" vertical-offset="0" max-vertical-offset="663">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="43" selection-start="1975" selection-end="1975" vertical-scroll-proportion="-7.076923" vertical-offset="71" max-vertical-offset="1343">
+        <state line="23" column="15" selection-start="916" selection-end="980" vertical-scroll-proportion="0.3975501" vertical-offset="0" max-vertical-offset="898">
           <folding>
-            <element signature="tag#head#0;tag#html#0" expanded="false" />
+            <element signature="tag#div#0;tag#div#1;tag#form#0;tag#div#1;tag#div#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/partial/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="69" selection-start="215" selection-end="215" vertical-scroll-proportion="0.056792874" vertical-offset="0" max-vertical-offset="898">
+        <state line="3" column="41" selection-start="207" selection-end="207" vertical-scroll-proportion="0.056792874" vertical-offset="0" max-vertical-offset="898">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partial/reset.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="38" selection-start="630" selection-end="630" vertical-scroll-proportion="0.2271715" vertical-offset="0" max-vertical-offset="898">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partial/pools.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="15" selection-start="693" selection-end="693" vertical-scroll-proportion="0.2650334" vertical-offset="0" max-vertical-offset="898">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partial/teams.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="375" selection-end="375" vertical-scroll-proportion="0.2271715" vertical-offset="0" max-vertical-offset="898">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partial/settings.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="924">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partial/players.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="391" selection-end="391" vertical-scroll-proportion="0.2271715" vertical-offset="0" max-vertical-offset="898">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/firebase.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="0" selection-start="53" selection-end="53" vertical-scroll-proportion="0.075723834" vertical-offset="0" max-vertical-offset="898">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partial/terms.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="48" selection-start="94" selection-end="94" vertical-scroll-proportion="0.03841808" vertical-offset="0" max-vertical-offset="885">
+          <folding>
+            <element signature="n#style#0;n#p#11;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#p#11;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../mplynch.github.io/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="18" selection-start="74" selection-end="74" vertical-scroll-proportion="0.075723834" vertical-offset="0" max-vertical-offset="898">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="9" selection-start="383" selection-end="383" vertical-scroll-proportion="0.35455543" vertical-offset="0" max-vertical-offset="911">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partial/signup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="43" selection-start="256" selection-end="256" vertical-scroll-proportion="0.096045196" vertical-offset="0" max-vertical-offset="885">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="924">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partial/signin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="38" selection-start="251" selection-end="251" vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="646">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partial/resetpassword.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="41" selection-start="169" selection-end="169" vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="442">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="98" selection-start="1002" selection-end="1002" vertical-scroll-proportion="-15.692307" vertical-offset="0" max-vertical-offset="2176">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="45" selection-start="1386" selection-end="1386" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="15" selection-start="684" selection-end="684" vertical-scroll-proportion="0.3495671" vertical-offset="0" max-vertical-offset="1326">
+          <folding>
+            <element signature="n#!!block;n#MainCtrl#0" expanded="false" />
+            <element signature="n#!!block;n#PlayerCtrl#0" expanded="false" />
+            <element signature="n#!!block;n#PoolCtrl#0" expanded="false" />
+            <element signature="n#!!block;n#SetupCtrl#0" expanded="false" />
+            <element signature="n#!!block;n#TeamCtrl#0" expanded="false" />
+            <element signature="e#6018#6141#0" expanded="false" />
+            <element signature="e#6207#6409#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

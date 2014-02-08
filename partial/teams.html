@@ -1,6 +1,12 @@
-<legend>Current Teams</legend>
-<ul class="unstyled">
-	<li ng-repeat="team in teams | orderByPriority">
-        <a ng-model="team.$priority" ng-click="view(team)">{{team.name}}</a>
-    </li>
-</ul>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Teams</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="unstyled">
+            <li ng-repeat="team in teams | orderByPriority">
+                <a ng-model="team.$priority" ng-click="view(team)">{{team.name}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

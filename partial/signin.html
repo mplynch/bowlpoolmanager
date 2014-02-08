@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <form name="signInForm" ng-submit="signIn()">
+                <fieldset>
+                    <h3>Please Sign In</h3>
+                    <hr class="colorgraph">
+                    <div class="form-group">
+                        <input name="email" id="email" type="email" ng-model="player.email" class="form-control" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input name="password" id="password" type="password" ng-model="player.password" class="form-control" placeholder="Password" required>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="rememberMe" id="rememberMe" ng-model="player.rememberMe"> Remember me
+                        </label>
+                        <a href="#/resetpassword" class="pull-right">Forgot Password?</a>
+                    </div>
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <button type="submit" class="btn btn-success btn-block">Sign In</button>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <a class="btn btn-primary btn-block" href="#/signup">Register</a>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <form name="signUpForm" ng-submit="signUp()">
+                <fieldset>
+                    <h3>Please Sign Up</h3>
+                    <hr class="colorgraph">
+                    <div class="form-group">
+                        <input type="text" name="name" id="name" ng-model="player.name" class="form-control" placeholder="Full Name" tabindex="1" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" id="email" ng-model="player.email" class="form-control" placeholder="Email Address" tabindex="2" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="password" name="password" id="password" ng-model="player.password" class="form-control" placeholder="Password" tabindex="3" required>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="password" name="password_confirmation" id="password_confirmation" ng-model="player.passwordConfirm" class="form-control" placeholder="Confirm Password" tabindex="4" required>
+                            </div>
+                        </div>
+                    </div>
+<!--                    <div class="row">
+                        <div class="col-xs-3 col-sm-3 col-md-3">
+                            <input type="checkbox" name="t_and_c" id="t_and_c" tabindex="5" required> I Agree
+                        </div>
+                        <div class="col-xs-9 col-sm-9 col-md-9">
+                            By clicking <strong class="label label-primary">Register</strong>, you agree to the <a ng-click="viewTerms()">Terms and Conditions</a> set out by this site, including our Cookie Use.
+                        </div>
+                    </div>-->
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6">
+                            <button type="submit" class="btn btn-primary btn-block" tabindex="6">Register</button>
+                        </div>
+                        <div class="col-xs-6 col-md-6">
+                            <a href="#/signin" class="btn btn-success btn-block">Sign In</a>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

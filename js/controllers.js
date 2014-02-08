@@ -1,54 +1,89 @@
-function MainCtrl($scope, $routeParams, $location, $firebase) {
-    var firebase = new Firebase("https://bowlpoolmanager.firebaseio.com/");
+function ErrorCtrl($scope) {
 
-    $scope.currentPlayer = { email: "mplynch@gmail.com", admin: true };
+}
 
-    $scope.auth = function () {
+function LoginCtrl($scope, $location, $firebase, $firebaseSimpleLogin) {
+    var bpmRef = new Firebase("https://bowlpoolmanager.firebaseio.com");
+    $scope.auth = $firebaseSimpleLogin(bpmRef);
 
+    $scope.resetPassword = function() {
+        console.log('attempting to send password reset email');
+
+        $scope.auth.$sendPasswordResetEmail($scope.player.email)
+            .then(function() {
+                console.log('password reset email sent');
+                // TODO: Notify user
+            },
+            function() {
+                console.log('failed to send password reset email');
+                // TODO: Notify user
+            });
     };
 
-    $scope.unauth = function () {
+    $scope.signIn = function() {
+        console.log('attempting to sign in');
 
+        $scope.auth.$login('password', {
+            email : $scope.player.email,
+            password: $scope.player.password,
+            rememberMe: $scope.player.rememberMe
+        }).then(function(user) {
+                console.log('logged in as ', user.email);
+                $scope.auth = $scope.auth;
+                $location.path('#');
+            },
+            function(error) {
+                console.error('login failed: ', error);
+                // TODO: Notify user
+            });
     };
+
+    $scope.signUp = function() {
+        console.log('attempting to register');
+
+        $scope.auth.$createUser($scope.player.email, $scope.player.password, false)
+            .then(function(user) {
+                console.log('created user ' + user.id);
+                $location.path('#');
+            },
+            function(error) {
+                console.log('failed to create user: ', error);
+                // TODO: Notify user
+            });
+    };
+}
+
+function MainCtrl($scope, $routeParams, $location, $firebase, $firebaseSimpleLogin, $modal) {
+    var bpmRef = new Firebase("https://bowlpoolmanager.firebaseio.com");
+    $scope.auth = $firebaseSimpleLogin(bpmRef);
 
     $scope.navClass = function (page) {
         var currentRoute = $location.path();
         return page === currentRoute ? 'active' : '';
     };
 
+    $scope.viewTerms = function () {
+        var modalInstance = $modal.open({
+            templateUrl: 'partial/terms.html',
+            controller: ModalDetailCtrl,
+            resolve: {
+                items: function () {
+                    return null;
+                }
+            }
+        });
+    };
+
     console.log('setting current player in nav');
     //$scope.currentPlayer = BowlPoolManager.currentPlayer;
 }
 
-function SetupCtrl($scope, $firebase) {
-    var setupRef = new Firebase("https://bowlpoolmanager.firebaseio.com/setup");
-
-    $scope.clear = function () {
-        console.log('Clearing database');
-        $scope.statusMessage = 'Clearing database';
-        $scope.statusAlertLevel = 'alert-info';
-        //$scope.init.$delete();
-        $scope.statusMessage = 'Database cleared';
-        $scope.statusAlertLevel = 'alert-success';
-    };
-
-    $scope.initialize = function () {
-        console.log('Initializing database');
-        $scope.statusMessage = 'Initializing database';
-        $scope.statusAlertLevel = 'alert-info';
-        //$scope.init.$save();
-        $scope.statusMessage = 'Database initialized';
-        $scope.statusAlertLevel = 'alert-success';
-    };
-}
-
 function PlayerCtrl($scope, $routeParams, $firebase, $modal) {
-    var playerRef = new Firebase("https://bowlpoolmanager.firebaseio.com/players");
-    $scope.players = $firebase(playerRef);
+    var playersRef = new Firebase("https://bowlpoolmanager.firebaseio.com/players");
 
     $scope.list = function () {
         console.log('listing players');
-        $scope.players = $firebase(playerRef);
+        $scope.players = $firebase(playersRef);
         console.log('player list received');
     };
 
@@ -99,6 +134,32 @@ function PoolCtrl($scope, $routeParams, $firebase, $modal) {
     $scope.pools.$bind($scope, "remotePools");
 }
 
+function SettingsCtrl($scope, $firebase) {
+
+}
+
+function SetupCtrl($scope, $firebase) {
+    var setupRef = new Firebase("https://bowlpoolmanager.firebaseio.com/setup");
+
+    $scope.clear = function () {
+        console.log('Clearing database');
+        $scope.statusMessage = 'Clearing database';
+        $scope.statusAlertLevel = 'alert-info';
+        //$scope.init.$delete();
+        $scope.statusMessage = 'Database cleared';
+        $scope.statusAlertLevel = 'alert-success';
+    };
+
+    $scope.initialize = function () {
+        console.log('Initializing database');
+        $scope.statusMessage = 'Initializing database';
+        $scope.statusAlertLevel = 'alert-info';
+        //$scope.init.$save();
+        $scope.statusMessage = 'Database initialized';
+        $scope.statusAlertLevel = 'alert-success';
+    };
+}
+
 function TeamCtrl($scope, $routeParams, $firebase, $modal) {
     var teamRef = new Firebase("https://bowlpoolmanager.firebaseio.com/teams");
 
@@ -134,11 +195,13 @@ function TeamCtrl($scope, $routeParams, $firebase, $modal) {
     };
 
     $scope.list();
-    $scope.teams.$bind($scope, "remoteTeams");
+    $scope.teams.$bind($scope, "remoteTeams")
+
 }
 
 var ModalDetailCtrl = function ($scope, $modalInstance, items) {
-    $scope.item = items;
+    if (items)
+        $scope.item = items;
 
     $scope.ok = function () {
         $modalInstance.dismiss('ok');
@@ -156,7 +219,3 @@ var ModalEditorCtrl = function ($scope, $modalInstance, items) {
         $modalInstance.dismiss('cancel');
     };
 };
-
-function ErrorCtrl($scope) {
-
-}

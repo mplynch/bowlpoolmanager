@@ -1,11 +1,17 @@
-<legend>Current Pools</legend>
-<ul class="unstyled">
-    <li ng-repeat="pool in pools | orderByPriority">
-        <a ng-model="pool.$priority" ng-click="view(pool)">{{pool.name}}</a>
-    </li>
-</ul>
-<form class="form-horizontal">
-	<label for="name">Create A Pool</label> <input name="name" type="text"
-		placeholder="Name" ng-model="newPool.name">
-	<button type="submit" class="btn btn-primary" ng-click="add(newPool)">Save</button>
-</form>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Pools</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="unstyled">
+            <li ng-repeat="pool in pools | orderByPriority">
+                <a ng-model="pool.$priority" ng-click="view(pool)">{{pool.name}}</a>
+            </li>
+        </ul>
+        <form class="form-horizontal">
+            <label for="name">Create A Pool</label> <input name="name" type="text"
+                                                           placeholder="Name" ng-model="newPool.name">
+            <button type="submit" class="btn btn-primary" ng-click="add(newPool)">Save</button>
+        </form>
+    </div>
+</div>

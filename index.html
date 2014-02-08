@@ -3,26 +3,33 @@
 <head>
     <title>Bowl Pool Manager</title>
     <!-- Bootstrap -->
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Bootswatch -->
+    <link href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/flatly/bootstrap.min.css" rel="stylesheet">
 
     <!-- BowlPoolManager CSS -->
     <link rel="stylesheet" href="css/style.css">
 
     <!-- JQuery -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
     <!-- Bootstrap -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 
     <!-- Firebase -->
-    <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+    <script src="http://cdn.firebase.com/v0/firebase.js"></script>
+    <script src='http://cdn.firebase.com/js/simple-login/1.2.5/firebase-simple-login.js'></script>
 
     <!-- AngularJS -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
 
     <!-- AngularUI -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
 
     <!-- AngularFire Plugin -->
     <script src="https://cdn.firebase.com/libs/angularfire/0.6.0/angularfire.min.js"></script>
@@ -35,72 +42,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body class="ng-cloak" ng-controller="MainCtrl">
-<div id="wrap" class="container">
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                </button>
-                <a class="navbar-brand" href="#">Bowl Pool Manager</a>
-            </div>
+<div id="wrap">
+    <div class="container">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".bpm-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><i class="fa fa-trophy"></i> bpm</a>
+                </div>
+                <div class="navbar-collapse bpm-navbar-collapse collapse" role="navigation">
 
-            <div class="collapse navbar-collapse" id="navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li ng-class="navClass('/teams')">
-                        <a href="#/teams">Teams</a>
-                    </li>
-                    <li ng-show="currentPlayer.admin">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li ng-class="navClass('/players')">
-                                <a href="#/players">Players</a>
-                            </li>
-                            <li ng-class="navClass('/pools')">
-                                <a href="#/pools">Pools</a>
-                            </li>
-                            <li ng-class="navClass('/init')">
-                                <a href="#/setup">Setup</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                    <ul class="nav navbar-nav">
+                        <li ng-class="navClass('/pools')">
+                            <a href="#" ng-show="auth.user">My Pools</a>
+                        </li>
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li id="fat-menu" class="dropdown">
-                        <a href="#" id="drop3"
-                           role="button" class="dropdown-toggle ng-cloak" data-toggle="dropdown">{{currentPlayer.email}}<b
-                                class="caret"></b> </a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-                            <li role="presentation">
-                                <a role="menuitem" tabindex="-1"
-                                   ng-hide="isReady" ng-click="auth()">Sign in</a>
-                            </li>
-                            <li role="presentation">
-                                <a role="menuitem" tabindex="-1"
-                                   ng-hide="isReady" ng-show="isReady"
-                                   ng-click="unauth()">Sign out</a>
-                            </li>
-                            <!-- 							<li role="presentation"><a role="menuitem" tabindex="-1" -->
-                            <!-- 								href="{{currentPlayer.logoutUrl}}">Log Out</a> -->
-                            <!--                            </li> -->
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-10">
-                <div ng-view ng-hide="isReady"></div>
-            </div>
-        </div>
-    </nav>
+                        <li ng-show="userIsAdmin">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li ng-class="navClass('/players')">
+                                    <a href="#/players">Players</a>
+                                </li>
+                                <li ng-class="navClass('/pools')">
+                                    <a href="#/pools">Pools</a>
+                                </li>
+                                <li ng-class="navClass('/init')">
+                                    <a href="#/setup">Setup</a>
+                                </li>
+                                <li ng-class="navClass('/teams')">
+                                    <a href="#/teams">Teams</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
 
+                    <ul class="nav navbar-nav navbar-right">
+                        <a href="#/signin" ng-hide="auth.user"><button type="button" class="btn btn-primary">Sign In</button></a>
+                        <li id="fat-menu" class="dropdown" ng-show="auth.user">
+                            <a href="#" id="drop3" role="button" class="dropdown-toggle ng-cloak" data-toggle="dropdown"><i class="fa fa-user"></i> {{auth.user.email}}<b class="caret"></b> </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                                <li role="presentation">
+                                    <a role="menuitem" tabindex="-1" href="#/settings">Settings</a>
+                                </li>
+                                <li class="divider" role="presentation"></li>
+                                <li role="presentation">
+                                    <a role="menuitem" tabindex="-1" ng-click="auth.$logout()">Sign out</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div ng-view ng-hide="isReady"></div>
+    </div>
 </div>
 <div id="footer">
     <div class="container">
-        <p class="muted credit">
-            Built with <a href="https://github.com/mplynch/bowlpoolmanager"
-                          rel="external">Bowl Pool Manager</a> by Michael Lynch.
-        </p>
+        <div class="row">
+<!--            <div class="col-xs-6 col-sm-6 col-md-6">
+                <a ng-click="viewTerms()">Terms</a>
+            </div>-->
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <p class="muted credit">
+                    Built with <a href="https://github.com/mplynch/bowlpoolmanager"
+                                  rel="external" target="_blank">Bowl Pool Manager</a>
+                </p>
+            </div>
+        </div>
     </div>
 </div>
 </body>
