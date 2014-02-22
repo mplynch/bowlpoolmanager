@@ -1,17 +1,16 @@
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">Pools</h3>
-    </div>
-    <div class="panel-body">
-        <ul class="unstyled">
-            <li ng-repeat="pool in pools | orderByPriority">
-                <a ng-model="pool.$priority" ng-click="view(pool)">{{pool.name}}</a>
-            </li>
-        </ul>
-        <form class="form-horizontal">
-            <label for="name">Create A Pool</label> <input name="name" type="text"
-                                                           placeholder="Name" ng-model="newPool.name">
-            <button type="submit" class="btn btn-primary" ng-click="add(newPool)">Save</button>
-        </form>
-    </div>
+<h1>Pools</h1>
+<nav class="navbar navbar-inverse" role="navigation">
+    <ul class="nav navbar-nav">
+        <li>
+            <a ng-click="view()" ng-show="auth.user">Create a pool</a>
+        </li>
+    </ul>
+</nav>
+<hr />
+<div class="well">
+    <ul class="unstyled">
+        <li ng-repeat="pool in pools | orderByPriority">
+            <a ng-model="pool.$priority" ng-click="view(pool)">{{pool.name}}</a>
+        </li>
+    </ul>
 </div>

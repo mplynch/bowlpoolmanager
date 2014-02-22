@@ -1,3 +1,4 @@
-/**
- * Created by Michael on 2/9/14.
- */
+app.constant('bpmSettings', {
+    // Set bpmURL to your Firebase URL.
+   bpmURL : 'https://bowlpoolmanager.firebaseio.com'
+});

@@ -1,47 +1,96 @@
 var app = angular.module('bowlpoolmanager', ['ngRoute', 'ui.bootstrap', 'firebase']);
 
 app.config(function($routeProvider, $locationProvider) {
-    $routeProvider
-        .when('/setup', {
-            controller : SetupCtrl,
-            templateUrl : 'partial/setup.html'
-        }).when('/pools', {
-            controller : PoolCtrl,
-            templateUrl : 'partial/pools.html'
-        }).when('/pools/:id', {
-            controller : PoolCtrl,
-            templateUrl : 'partial/pool.html'
-        }).when('/teams', {
-            controller : TeamCtrl,
-            templateUrl : 'partial/teams.html'
-        }).when('/teams/:id', {
-            controller : TeamCtrl,
-            templateUrl : 'partial/team.html'
-        }).when('/players/:id', {
-            controller : PlayerCtrl,
-            templateUrl : 'partial/player.html'
-        }).when('/players', {
-            controller : PlayerCtrl,
-            templateUrl : 'partial/players.html'
-        }).when('/404', {
-            controller : ErrorCtrl,
-            templateUrl : 'partial/404.html'
-        }).when('/', {
-            controller : MainCtrl,
-            templateUrl : 'partial/home.html'
-        }).when('/signin', {
-            controller : LoginCtrl,
-            templateUrl: 'partial/signin.html'
-        }).when('/signup', {
-            controller : LoginCtrl,
-            templateUrl: 'partial/signup.html'
-        }).when('/resetpassword', {
-            controller : LoginCtrl,
-            templateUrl: 'partial/resetpassword.html'
-        }).when('/settings', {
-            controller : SettingsCtrl,
-            templateUrl: 'partial/settings.html'
-        }).otherwise({
-            redirectTo : '/'
-        });
+    $routeProvider.when('/', {
+        controller : 'StubCtrl',
+        templateUrl : 'partial/home.html'
+    });
+
+    $routeProvider.when('/404', {
+        controller : 'HTTPErrorCtrl',
+        templateUrl : 'partial/404.html'
+    });
+
+    $routeProvider.when('/picks', {
+        controller : 'PicksCtrl',
+        templateUrl : 'partial/picks.html'
+    });
+
+    $routeProvider.when('/players', {
+        controller : 'PlayerCtrl',
+        templateUrl : 'partial/players.html'
+    });
+
+    $routeProvider.when('/players/:id', {
+        controller : 'PlayerCtrl',
+        templateUrl : 'partial/player.html'
+    });
+
+    $routeProvider.when('/pools', {
+        controller : 'PoolCtrl',
+        templateUrl : 'partial/pools.html'
+    });
+
+    $routeProvider.when('/pools/:id', {
+        controller : 'PoolCtrl',
+        templateUrl : 'partial/pool.html'
+    });
+
+    $routeProvider.when('/profile', {
+        controller : 'ProfileCtrl',
+        templateUrl : 'partial/profile.html'
+    });
+
+    $routeProvider.when('/resetpassword', {
+        controller : 'LoginCtrl',
+        templateUrl: 'partial/resetpassword.html'
+    });
+
+    $routeProvider.when('/settings', {
+        controller : 'SettingsCtrl',
+        templateUrl: 'partial/settings.html'
+    });
+    $routeProvider.when('/setup', {
+        controller : 'SetupCtrl',
+        templateUrl : 'partial/setup.html'
+    });
+
+    $routeProvider.when('/signin', {
+        controller : 'LoginCtrl',
+        templateUrl: 'partial/signin.html'
+    });
+
+    $routeProvider.when('/signup', {
+        controller : 'LoginCtrl',
+        templateUrl: 'partial/signup.html'
+    });
+
+    $routeProvider.when('/teams', {
+        controller : 'TeamCtrl',
+        templateUrl : 'partial/teams.html'
+    });
+
+    $routeProvider.when('/teams/:id', {
+        controller : 'TeamCtrl',
+        templateUrl : 'partial/team.html'
+    });
+
+    $routeProvider.otherwise({
+        redirectTo : '/'
+    });
 });
+
+app.config(['$provide', function($provide){
+    $provide.decorator('$rootScope', ['$delegate', function($delegate){
+
+        Object.defineProperty($delegate.constructor.prototype, '$onRootScope', {
+            value: function(name, listener){
+                var unsubscribe = $delegate.$on(name, listener);
+                this.$on('$destroy', unsubscribe);
+            },
+            enumerable: false
+        });
+
+        return $delegate;
+    }]);
+}]);

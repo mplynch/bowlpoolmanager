@@ -6,3 +6,10 @@ An application for managing NCAA football bowl pools written with AngularJS, Boo
 Special thanks to [JetBrains](http://www.jetbrains.com) for supporting this project by issuing a free open source license of [WebStorm](http://www.jetbrains.com/webstorm/) to this project!
 
 Written by Michael Lynch
+
+
+# License
+
+THE BEER-WARE LICENSE
+
+See [license.txt](/license.txt) for details

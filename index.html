@@ -9,7 +9,7 @@
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Bootswatch -->
-    <link href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/flatly/bootstrap.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/superhero/bootstrap.min.css" rel="stylesheet">
 
     <!-- BowlPoolManager CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -36,6 +36,7 @@
 
     <!-- BowlPoolManager Scripts -->
     <script src="js/app.js"></script>
+    <script src="js/constants.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
 
@@ -59,39 +60,42 @@
 
                     <ul class="nav navbar-nav">
                         <li ng-class="navClass('/pools')">
-                            <a href="#" ng-show="auth.user">My Pools</a>
+                            <a href="#/pools" ng-show="auth.user"><i class="fa fa-group"></i> My Pools</a>
+                        </li>
+                        <li ng-class="navClass('/picks')">
+                            <a href="#/picks" ng-show="auth.user"><i class="fa fa-pencil"></i> My Pick Sheets</a>
                         </li>
 
                         <li ng-show="userIsAdmin">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li ng-class="navClass('/players')">
-                                    <a href="#/players">Players</a>
+                                    <a href="#/players"><i class="fa fa-users"></i> Players</a>
                                 </li>
                                 <li ng-class="navClass('/pools')">
                                     <a href="#/pools">Pools</a>
                                 </li>
                                 <li ng-class="navClass('/init')">
-                                    <a href="#/setup">Setup</a>
-                                </li>
-                                <li ng-class="navClass('/teams')">
-                                    <a href="#/teams">Teams</a>
+                                    <a href="#/setup"><i class="fa fa-cogs"></i> Setup</a>
                                 </li>
                             </ul>
                         </li>
                     </ul>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <a href="#/signin" ng-hide="auth.user"><button type="button" class="btn btn-primary">Sign In</button></a>
+                    <ul class="nav navbar-nav navbar-right" ng-show="isReady" ng-controller="LoginCtrl">
+                        <a href="#/signin" ng-hide="auth.user"><button type="button" class="btn btn-primary"><i class="fa fa-sign-in"></i> Sign In</button></a>
                         <li id="fat-menu" class="dropdown" ng-show="auth.user">
-                            <a href="#" id="drop3" role="button" class="dropdown-toggle ng-cloak" data-toggle="dropdown"><i class="fa fa-user"></i> {{auth.user.email}}<b class="caret"></b> </a>
+                            <a href="#" id="drop3" role="button" class="dropdown-toggle ng-cloak" data-toggle="dropdown">{{auth.user.email}}<b class="caret"></b> </a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="#/settings">Settings</a>
+                                    <a role="menuitem" tabindex="-1" href="#/profile"><i class="fa fa-user"></i> Profile</a>
+                                </li>
+                                <li role="presentation">
+                                    <a role="menuitem" tabindex="-1" href="#/settings"><i class="fa fa-cog"></i> Settings</a>
                                 </li>
                                 <li class="divider" role="presentation"></li>
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" ng-click="auth.$logout()">Sign out</a>
+                                    <a role="menuitem" tabindex="-1" ng-click="signOut()"><i class="fa fa-sign-out"></i> Sign out</a>
                                 </li>
                             </ul>
                         </li>
@@ -99,16 +103,21 @@
                 </div>
             </div>
         </nav>
-        <div ng-view ng-hide="isReady"></div>
+        <div ng-controller="AlertCtrl">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3"></div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3"></div>
+            </div>
+        </div>
+        <div ng-view ng-show="isReady"></div>
+        <div ng-hide="isReady" class="text-center"><h1>Loading...</h1><img src="img/loading.gif"></div>
     </div>
 </div>
 <div id="footer">
     <div class="container">
-        <div class="row">
-<!--            <div class="col-xs-6 col-sm-6 col-md-6">
-                <a ng-click="viewTerms()">Terms</a>
-            </div>-->
-        </div>
         <div class="row">
             <div class="col-xs-6 col-sm-6 col-md-6">
                 <p class="muted credit">
