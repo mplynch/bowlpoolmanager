@@ -109,14 +109,28 @@ app.controller('LoginCtrl', ['$rootScope', '$scope', '$location', '$controller',
 
             $scope.auth.$createUser($scope.player.email, $scope.player.password, false)
                 .then(function (user) {
-                    var playerRef = new Firebase(bpmSettings.bpmURL + '/players/' + user.id);
+                    var playerRef = new Firebase(bpmSettings.bpmURL + '/players/' + user.uid);
                     var player = $firebase(playerRef);
+                    var password = $scope.player.password;
                     delete $scope.player.password; // Don't store the password
                     delete $scope.player.confirm_password; // Don't store the password
                     player.$set($scope.player); // Store the player
-                    console.log('created user ' + user.id);
+                    console.log('created user ' + user.uid);
 
-                    $scope.signIn();
+                    $scope.auth.$login('password', {
+                        email: $scope.player.email,
+                        password: password,
+                        rememberMe: false
+                    }).then(function (user) {
+                            console.log('logged in as ', user.email);
+
+                            $alert.$clear();
+
+                            $location.path('/pools');
+                        },
+                        function (error) {
+                            errorHandler(error);
+                        });
                 },
                 function (error) {
                     errorHandler(error);
@@ -224,14 +238,12 @@ app.controller('PoolCtrl',  ['$scope', '$controller', '$location', '$firebase', 
 
             modalInstance.result.then(function(pool) {
                 pool.managers = { };
-                pool.managers[$scope.auth.user.id] = "true";
+                pool.managers[$scope.auth.user.uid] = "true";
                 $scope.pools.$add(pool).then(function(newPoolRef) {
-                    bpmRef.child('/players/' + $scope.auth.user.id + '/pools/' + newPoolRef.name()).set(true);
+                    bpmRef.child('/players/' + $scope.auth.user.uid + '/pools/' + newPoolRef.name()).set(true);
                     console.log('pool added');
                     $location.path('/pools/' + newPoolRef.name());
                 });
-
-
             });
         };
 
@@ -262,7 +274,7 @@ app.controller('ProfileCtrl', ['$scope', '$controller', '$firebase', '$firebaseS
 
         $scope.user = $scope.auth.$getCurrentUser()
             .then(function (user) {
-                var playerRef = new Firebase(bpmSettings.bpmURL + '/' + 'players/' + user.id);
+                var playerRef = new Firebase(bpmSettings.bpmURL + '/' + 'players/' + user.uid);
 
                 $scope.player = $firebase(playerRef);
             },

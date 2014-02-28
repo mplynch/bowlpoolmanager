@@ -1,0 +1,22 @@
+{
+    "rules": {
+        "picks": {
+            "$playerId": {
+                ".read": "$playerId == auth.uid",
+                ".write": "$playerId == auth.uid"
+            }
+        },
+        "players": {
+            "$player": {
+                ".read": "auth != null",
+                ".write": "$player == auth.uid"
+            }
+        },
+        "pools": {
+            ".read": "auth != null",
+            "$pool": {
+                ".write": "!data.exists() || data.child('managers').hasChild(auth.uid) == true"
+            }
+        }
+    }
+}
