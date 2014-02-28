@@ -2,13 +2,8 @@ var app = angular.module('bowlpoolmanager', ['ngRoute', 'ui.bootstrap', 'firebas
 
 app.config(function($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
-        controller : 'StubCtrl',
+        controller : 'HomeCtrl',
         templateUrl : 'partial/home.html'
-    });
-
-    $routeProvider.when('/404', {
-        controller : 'HTTPErrorCtrl',
-        templateUrl : 'partial/404.html'
     });
 
     $routeProvider.when('/picks', {
@@ -28,12 +23,12 @@ app.config(function($routeProvider, $locationProvider) {
 
     $routeProvider.when('/pools', {
         controller : 'PoolCtrl',
-        templateUrl : 'partial/pools.html'
+        templateUrl : 'partial/pools.list.html'
     });
 
     $routeProvider.when('/pools/:id', {
         controller : 'PoolCtrl',
-        templateUrl : 'partial/pool.html'
+        templateUrl : 'partial/pools.detail.html'
     });
 
     $routeProvider.when('/profile', {

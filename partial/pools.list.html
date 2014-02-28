@@ -1,0 +1,16 @@
+<h1>Pools</h1>
+<nav class="navbar navbar-inverse" role="navigation">
+    <ul class="nav navbar-nav">
+        <li>
+            <a ng-click="add()" ng-show="auth.user">Create a pool</a>
+        </li>
+    </ul>
+</nav>
+<hr />
+<div class="well">
+    <ul class="unstyled">
+        <li ng-repeat="pool in pools | orderByPriority">
+            <a ng-model="pool.$priority" ng-click="view(pool)">{{pool.name}}</a>
+        </li>
+    </ul>
+</div>

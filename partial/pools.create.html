@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title">Create A Pool</h2>
+    </div>
+    <form name="poolCreateForm" class="form-horizontal" ng-submit="ok()">
+        <div class="panel-body">
+            <p>Enter the name of your pool.  Don't worry, it doesn't have to be unique.</p>
+            <input type="text" name="name" ng-model="item.name" class="form-control" placeholder="Pool Name" required>
+        </div>
+        <div class="panel-footer">
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">OK</button>
+                <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
