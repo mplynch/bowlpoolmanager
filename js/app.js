@@ -27,7 +27,7 @@ app.config(function($routeProvider, $locationProvider) {
     });
 
     $routeProvider.when('/pools/:id', {
-        controller : 'PoolCtrl',
+        controller : 'PoolDetailCtrl',
         templateUrl : 'partial/pools.detail.html'
     });
 

@@ -47,3 +47,22 @@ app.factory('$alert', function() {
         $close: function(index) { return closeAlert(index); }
     };
 });
+
+app.factory('$bpmFirebase', ['$firebase', '$firebaseSimpleLogin', 'bpmSettings',
+    function($firebase, $firebaseSimpleLogin, bpmSettings) {
+        return {
+            $getAuth: function() {
+                var ref = this.$getFirebaseRef();
+                return $firebaseSimpleLogin(ref);
+            },
+            $getFirebase: function(path) {
+                var ref = this.$getFirebaseRef(path);
+                return $firebase(ref);
+            },
+            $getFirebaseRef: function(path) {
+                path = path || '';
+                // TODO: prefix path with a slash automatically
+                return new Firebase(bpmSettings.bpmURL + path);
+            }
+        };
+    }]);

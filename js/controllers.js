@@ -15,12 +15,6 @@ app.controller('AlertCtrl',  ['$scope', '$alert',
         };
     }]);
 
-app.controller('BaseRouteCtrl', ['$scope', '$location', '$firebaseSimpleLogin', '$alert', 'bpmSettings',
-    function ($scope, $location, $firebaseSimpleLogin, $alert, bpmSettings) {
-        var bpmRef = new Firebase(bpmSettings.bpmURL);
-        $scope.auth = $firebaseSimpleLogin(bpmRef);
-    }]);
-
 app.controller('HomeCtrl',  ['$scope', '$location',
     function ($scope, $location) {
         $scope.showPools = function () {
@@ -28,8 +22,8 @@ app.controller('HomeCtrl',  ['$scope', '$location',
         };
     }]);
 
-app.controller('LoginCtrl', ['$rootScope', '$scope', '$location', '$controller', '$firebase', '$firebaseSimpleLogin', 'bpmSettings', '$alert',
-    function ($rootScope, $scope, $location, $controller, $firebase, $firebaseSimpleLogin, bpmSettings, $alert) {
+app.controller('LoginCtrl', ['$rootScope', '$scope', '$location', '$firebase', '$firebaseSimpleLogin', 'bpmSettings', '$alert',
+    function ($rootScope, $scope, $location, $firebase, $firebaseSimpleLogin, bpmSettings, $alert) {
         $scope.$on("$destroy", function (event, val) {
             $alert.$clear();
         });
@@ -138,11 +132,11 @@ app.controller('LoginCtrl', ['$rootScope', '$scope', '$location', '$controller',
         };
     }]);
 
-app.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$firebase', '$firebaseSimpleLogin', 'bpmSettings',
-    function ($scope, $rootScope, $location, $firebase, $firebaseSimpleLogin, bpmSettings) {
+app.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$bpmFirebase',
+    function ($scope, $rootScope, $location, $bpmFirebase) {
         $scope.isReady = false;
-        var bpmRef = new Firebase(bpmSettings.bpmURL);
-        $scope.auth = $firebaseSimpleLogin(bpmRef);
+        var bpmRef = $bpmFirebase.$getFirebaseRef();
+        $scope.auth = $bpmFirebase.$getAuth();
 
         $scope.navClass = function (page) {
             var currentRoute = $location.path();
@@ -174,16 +168,15 @@ app.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$firebase', '$
         $scope.isReady = true;
     }]);
 
-app.controller('PicksCtrl', ['$scope', '$controller', '$firebase', '$modal', 'bpmSettings',
-    function ($scope, $controller, $firebase, $modal, bpmSettings) {
-        $controller('BaseRouteCtrl', {$scope: $scope});
+app.controller('PicksCtrl', ['$scope', '$bpmFirebase',
+    function ($scope, $bpmFirebase) {
+
     }]);
 
-app.controller('PlayerCtrl', ['$scope', '$controller', '$firebase', '$modal', 'bpmSettings',
-    function ($scope, $controller, $firebase, $modal, bpmSettings) {
-        $controller('BaseRouteCtrl', {$scope: $scope});
+app.controller('PlayerCtrl', ['$scope', '$bpmFirebase', '$modal',
+    function ($scope, $bpmFirebase, $modal) {
 
-        var playersRef = new Firebase(bpmSettings.bpmURL + '/' + 'players');
+        var playersRef = $bpmFirebase.getFirebaseRef('players');
 
         $scope.list = function () {
             console.log('listing players');
@@ -212,15 +205,18 @@ app.controller('PlayerCtrl', ['$scope', '$controller', '$firebase', '$modal', 'b
         $scope.players.$bind($scope, "remotePlayers");
     }]);
 
-app.controller('PoolCtrl',  ['$scope', '$controller', '$location', '$firebase', '$firebaseSimpleLogin', '$modal', 'bpmSettings',
-    function ($scope, $controller, $location, $firebase, $firebaseSimpleLogin, $modal, bpmSettings) {
-        $controller('BaseRouteCtrl', {$scope: $scope});
+app.controller('PoolCtrl',  ['$scope', '$location', '$bpmFirebase', '$modal',
+    function ($scope, $location, $bpmFirebase, $modal) {
 
-        var bpmRef = new Firebase(bpmSettings.bpmURL);
-        $scope.auth = $firebaseSimpleLogin(bpmRef);
+        /*$scope.pools = $bpmFirebase.$getFirebase('/players');*/
+        $scope.auth = $bpmFirebase.$getAuth();
 
-        var poolsRef = new Firebase(bpmSettings.bpmURL + '/' + 'pools');
-        $scope.pools = $firebase(poolsRef);
+        if (!$scope.auth.user) {
+            $location.path('/');
+            return;
+        }
+
+        $scope.pools = $bpmFirebase.$getFirebaseRef('/players/' + $scope.auth.user.uid + '/pools/');
 
         $scope.add = function () {
             console.log('adding a pool');
@@ -240,7 +236,7 @@ app.controller('PoolCtrl',  ['$scope', '$controller', '$location', '$firebase', 
                 pool.managers = { };
                 pool.managers[$scope.auth.user.uid] = "true";
                 $scope.pools.$add(pool).then(function(newPoolRef) {
-                    bpmRef.child('/players/' + $scope.auth.user.uid + '/pools/' + newPoolRef.name()).set(true);
+                    $bpmFirebase.$getFirebaseRef('/players/' + $scope.auth.user.uid + '/pools/' + newPoolRef.name()).set(true);
                     console.log('pool added');
                     $location.path('/pools/' + newPoolRef.name());
                 });
@@ -248,8 +244,7 @@ app.controller('PoolCtrl',  ['$scope', '$controller', '$location', '$firebase', 
         };
 
         $scope.view = function (pool) {
-            $scope.pool = pool;
-            $location.path('/pools/' + $scope.pool.$id);
+            $location.path('/pools/' + pool.$id);
         };
 
         $scope.$onRootScope('$firebaseSimpleLogin:logout', function () {
@@ -259,10 +254,15 @@ app.controller('PoolCtrl',  ['$scope', '$controller', '$location', '$firebase', 
         });
     }]);
 
-app.controller('ProfileCtrl', ['$scope', '$controller', '$firebase', '$firebaseSimpleLogin', '$location', '$alert', 'bpmSettings',
-    function ($scope, $controller, $firebase, $firebaseSimpleLogin, $location, $alert, bpmSettings) {
-        $controller('BaseRouteCtrl', {$scope: $scope});
+app.controller('PoolDetailCtrl',  ['$scope', '$routeParams', '$bpmFirebase',
+    function ($scope, $routeParams, $bpmFirebase) {
 
+        $scope.auth = $bpmFirebase.$getAuth();
+        $scope.pool = $bpmFirebase.$getFirebase('/pools/' + $routeParams.id);
+    }]);
+
+app.controller('ProfileCtrl', ['$scope', '$location', '$bpmFirebase', '$alert',
+    function ($scope, $location, $bpmFirebase, $alert) {
         $scope.$on("$destroy", function (event, val) {
             $alert.$clear();
         });
@@ -274,12 +274,10 @@ app.controller('ProfileCtrl', ['$scope', '$controller', '$firebase', '$firebaseS
 
         $scope.user = $scope.auth.$getCurrentUser()
             .then(function (user) {
-                var playerRef = new Firebase(bpmSettings.bpmURL + '/' + 'players/' + user.uid);
-
-                $scope.player = $firebase(playerRef);
+                $scope.player =  $bpmFirebase.$getFirebase('/players/' + user.uid);
             },
             function (error) {
-
+                console.log('failed to retrieve player: ' + user.uid);
             });
 
         $scope.save = function () {
@@ -299,23 +297,20 @@ app.controller('ProfileCtrl', ['$scope', '$controller', '$firebase', '$firebaseS
         });
     }]);
 
-app.controller('SettingsCtrl',  ['$scope', '$controller', '$firebase', 'bpmSettings',
-    function ($scope, $controller, $firebase, bpmSettings) {
-        $controller('BaseRouteCtrl', {$scope: $scope});
+app.controller('SettingsCtrl',  ['$scope', '$bpmFirebase',
+    function ($scope, $bpmFirebase) {
+
     }]);
 
-app.controller('SetupCtrl',  ['$scope', '$controller', '$firebase', 'bpmSettings',
-    function ($scope, $controller, $firebase, bpmSettings) {
-        $controller('BaseRouteCtrl', {$scope: $scope});
+app.controller('SetupCtrl',  ['$scope', '$bpmFirebase',
+    function ($scope, $bpmFirebase) {
 
-        var setup = new Firebase(bpmSettings.bpmURL + '/' + 'setup');
     }]);
 
-app.controller('TeamCtrl',  ['$scope', '$controller', '$firebase', '$modal', 'bpmSettings',
-    function ($scope, $controller, $firebase, $modal, bpmSettings) {
-        $controller('BaseRouteCtrl', {$scope: $scope});
+app.controller('TeamCtrl',  ['$scope', '$bpmFirebase', '$modal',
+    function ($scope, $firebase, $modal) {
 
-        var teamsRef = new Firebase(bpmSettings.bpmURL + '/' + 'teams');
+        var teamsRef = $bpmFirebase.$getFirebaseRef('/teams');
 
         $scope.list = function () {
             console.log('listing teams');
