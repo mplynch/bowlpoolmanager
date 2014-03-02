@@ -145,7 +145,7 @@ app.controller('MainCtrl', ['$scope', '$rootScope', '$location', '$bpmFirebase',
 
         $scope.viewTerms = function () {
             var modalInstance = $modal.open({
-                templateUrl: 'partial/terms.html',
+                templateUrl: 'partials/terms.html',
                 controller: ModalDetailCtrl,
                 resolve: {
                     items: function () {
@@ -186,7 +186,7 @@ app.controller('PlayerCtrl', ['$scope', '$bpmFirebase', '$modal',
 
         $scope.view = function (player) {
             var modalInstance = $modal.open({
-                templateUrl: 'partial/player.html',
+                templateUrl: 'partials/player.html',
                 controller: ModalDetailCtrl,
                 resolve: {
                     items: function () {
@@ -224,7 +224,7 @@ app.controller('PoolCtrl',  ['$scope', '$location', '$bpmFirebase', '$modal',
             var newPool = { name: '' };
 
             modalInstance = $modal.open({
-                templateUrl: 'partial/pools.create.html',
+                templateUrl: 'partials/pools.create.html',
                 controller: ModalEditorCtrl,
                 resolve: {
                     items: function () {
@@ -320,7 +320,7 @@ app.controller('TeamCtrl',  ['$scope', '$bpmFirebase', '$modal',
 
         $scope.view = function (team) {
             var modalInstance = $modal.open({
-                templateUrl: 'partial/team.html',
+                templateUrl: 'partials/team.html',
                 controller: ModalDetailCtrl,
                 resolve: {
                     items: function () {

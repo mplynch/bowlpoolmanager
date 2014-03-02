@@ -3,71 +3,71 @@ var app = angular.module('bowlpoolmanager', ['ngRoute', 'ui.bootstrap', 'firebas
 app.config(function($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
         controller : 'HomeCtrl',
-        templateUrl : 'partial/home.html'
+        templateUrl : 'partials/home.html'
     });
 
     $routeProvider.when('/picks', {
         controller : 'PicksCtrl',
-        templateUrl : 'partial/picks.html'
+        templateUrl : 'partials/picks.html'
     });
 
     $routeProvider.when('/players', {
         controller : 'PlayerCtrl',
-        templateUrl : 'partial/players.html'
+        templateUrl : 'partials/players.html'
     });
 
     $routeProvider.when('/players/:id', {
         controller : 'PlayerCtrl',
-        templateUrl : 'partial/player.html'
+        templateUrl : 'partials/player.html'
     });
 
     $routeProvider.when('/pools', {
         controller : 'PoolCtrl',
-        templateUrl : 'partial/pools.list.html'
+        templateUrl : 'partials/pools.list.html'
     });
 
     $routeProvider.when('/pools/:id', {
         controller : 'PoolDetailCtrl',
-        templateUrl : 'partial/pools.detail.html'
+        templateUrl : 'partials/pools.detail.html'
     });
 
     $routeProvider.when('/profile', {
         controller : 'ProfileCtrl',
-        templateUrl : 'partial/profile.html'
+        templateUrl : 'partials/profile.html'
     });
 
     $routeProvider.when('/resetpassword', {
         controller : 'LoginCtrl',
-        templateUrl: 'partial/resetpassword.html'
+        templateUrl: 'partials/resetpassword.html'
     });
 
     $routeProvider.when('/settings', {
         controller : 'SettingsCtrl',
-        templateUrl: 'partial/settings.html'
+        templateUrl: 'partials/settings.html'
     });
     $routeProvider.when('/setup', {
         controller : 'SetupCtrl',
-        templateUrl : 'partial/setup.html'
+        templateUrl : 'partials/setup.html'
     });
 
     $routeProvider.when('/signin', {
         controller : 'LoginCtrl',
-        templateUrl: 'partial/signin.html'
+        templateUrl: 'partials/signin.html'
     });
 
     $routeProvider.when('/signup', {
         controller : 'LoginCtrl',
-        templateUrl: 'partial/signup.html'
+        templateUrl: 'partials/signup.html'
     });
 
     $routeProvider.when('/teams', {
         controller : 'TeamCtrl',
-        templateUrl : 'partial/teams.html'
+        templateUrl : 'partials/teams.html'
     });
 
     $routeProvider.when('/teams/:id', {
         controller : 'TeamCtrl',
-        templateUrl : 'partial/team.html'
+        templateUrl : 'partials/team.html'
     });
 
     $routeProvider.otherwise({
