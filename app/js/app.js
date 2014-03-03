@@ -1,81 +1,8 @@
-var app = angular.module('bowlpoolmanager', ['ngRoute', 'ui.bootstrap', 'firebase']);
+var myApp = angular.module('myApp',
+    ['myApp.config', 'myApp.routes', 'myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers',
+        'waitForAuth', 'routeSecurity', 'ui.bootstrap']);
 
-app.config(function($routeProvider, $locationProvider) {
-    $routeProvider.when('/', {
-        controller : 'HomeCtrl',
-        templateUrl : 'partials/home.html'
-    });
-
-    $routeProvider.when('/picks', {
-        controller : 'PicksCtrl',
-        templateUrl : 'partials/picks.html'
-    });
-
-    $routeProvider.when('/players', {
-        controller : 'PlayerCtrl',
-        templateUrl : 'partials/players.html'
-    });
-
-    $routeProvider.when('/players/:id', {
-        controller : 'PlayerCtrl',
-        templateUrl : 'partials/player.html'
-    });
-
-    $routeProvider.when('/pools', {
-        controller : 'PoolCtrl',
-        templateUrl : 'partials/pools.list.html'
-    });
-
-    $routeProvider.when('/pools/:id', {
-        controller : 'PoolDetailCtrl',
-        templateUrl : 'partials/pools.detail.html'
-    });
-
-    $routeProvider.when('/profile', {
-        controller : 'ProfileCtrl',
-        templateUrl : 'partials/profile.html'
-    });
-
-    $routeProvider.when('/resetpassword', {
-        controller : 'LoginCtrl',
-        templateUrl: 'partials/resetpassword.html'
-    });
-
-    $routeProvider.when('/settings', {
-        controller : 'SettingsCtrl',
-        templateUrl: 'partials/settings.html'
-    });
-    $routeProvider.when('/setup', {
-        controller : 'SetupCtrl',
-        templateUrl : 'partials/setup.html'
-    });
-
-    $routeProvider.when('/signin', {
-        controller : 'LoginCtrl',
-        templateUrl: 'partials/signin.html'
-    });
-
-    $routeProvider.when('/signup', {
-        controller : 'LoginCtrl',
-        templateUrl: 'partials/signup.html'
-    });
-
-    $routeProvider.when('/teams', {
-        controller : 'TeamCtrl',
-        templateUrl : 'partials/teams.html'
-    });
-
-    $routeProvider.when('/teams/:id', {
-        controller : 'TeamCtrl',
-        templateUrl : 'partials/team.html'
-    });
-
-    $routeProvider.otherwise({
-        redirectTo : '/'
-    });
-});
-
-app.config(['$provide', function($provide){
+myApp.config(['$provide', function($provide){
     $provide.decorator('$rootScope', ['$delegate', function($delegate){
 
         Object.defineProperty($delegate.constructor.prototype, '$onRootScope', {
@@ -88,4 +15,19 @@ app.config(['$provide', function($provide){
 
         return $delegate;
     }]);
+}]);
+
+myApp.run(['loginService', '$rootScope', 'FBURL', function(loginService, $rootScope, FBURL) {
+    if( FBURL === 'https://INSTANCE.firebaseio.com' ) {
+        // double-check that the app has been configured
+        angular.element(document.body).html('<h1>Please configure app/js/config.js before running!</h1>');
+        setTimeout(function() {
+            angular.element(document.body).removeClass('hide');
+        }, 250);
+    }
+    else {
+        // establish authentication
+        $rootScope.auth = loginService.init('/login');
+        $rootScope.FBURL = FBURL;
+    }
 }]);
