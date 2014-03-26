@@ -1,23 +1,26 @@
 <div class="panel panel-default">
-    <div class="panel-heading">
-        <h2 class="panel-title">Pool Detail</h2>
-    </div>
-    <div class="panel-body">
-        <form name="poolForm" class="form-horizontal" ng-controller="PoolCtrl">
+    <form name="poolForm" class="form-horizontal" ng-controller="PoolCtrl">
+        <div class="panel-heading">
+            <h2 class="panel-title">{{pool.name}}</h2>
+        </div>
+        <div class="panel-body">
+
             <div class="control-group">
                 <label class="control-label" for="name">Name</label>
                 <div class="controls">
-                    <input type="text" name="name" ng-model="item.name" required>
+                    <input type="text" name="name" id="name" ng-model="pool.name" class="form-control" required>
                 </div>
             </div>
-        </form>
-    </div>
-    <div class="panel-footer">
-        <div class="control-group">
-            <div class="controls">
-                <button class="btn btn-primary" ng-click="add()">Add</button>
-            </div>
-        </div>
 
-    </div>
+        </div>
+        <div class="panel-footer" ng-show="isManager">
+            <div class="control-group">
+                <div class="controls">
+                    <button class="btn btn-primary" ng-click="save()">Save</button>
+                    <button class="btn btn-danger" ng-click="delete()">Delete</button>
+                </div>
+            </div>
+
+        </div>
+    </form>
 </div>

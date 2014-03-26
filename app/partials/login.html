@@ -20,24 +20,18 @@
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="password" ng-cloak ng-show="createMode" ng-model="confirm_password" class="form-control" placeholder="Confirm Password">
+                                <input type="password" ng-cloak ng-show="createMode" ng-model="confirm" class="form-control" placeholder="Confirm Password">
                             </div>
                         </div>
                     </div>
-                    <div class="checkbox" ng-cloak>
-                        <label>
-                            <input type="checkbox" name="rememberMe" id="rememberMe" ng-model="rememberMe"> Remember me
-                        </label>
-                        <a href="#/resetpassword" class="pull-right" ng-cloak ng-hide="createMode">Forgot Password?</a>
+                    <!--                    <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="rememberMe" id="rememberMe" ng-model="rememberMe"> Remember me
+                                            </label>
+                                        </div>-->
+                    <div class="form-group">
+                        <a href="#/resetpassword" class="pull-right" ng-cloak ng-hide="createMode">Forgot Password</a>
                     </div>
-                    <!--                    <div class="row">
-                        <div class="col-xs-3 col-sm-3 col-md-3">
-                            <input type="checkbox" name="t_and_c" id="t_and_c" tabindex="5"> I Agree
-                        </div>
-                        <div class="col-xs-9 col-sm-9 col-md-9">
-                            By clicking <strong class="label label-primary">Register</strong>, you agree to the <a ng-click="viewTerms()">Terms and Conditions</a> set out by this site, including our Cookie Use.
-                        </div>
-                    </div>-->
                     <hr class="colorgraph">
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
@@ -47,7 +41,7 @@
                             <a class="btn btn-primary btn-block" ng-cloak ng-hide="createMode" ng-click="createMode = true">Register</a>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
-                            <a class="btn btn-primary btn-block" ng-cloak ng-show="createMode" ng-click="createMode = false">Create Account</a>
+                            <a class="btn btn-primary btn-block" ng-cloak ng-show="createMode" ng-click="createAccount()">Create Account</a>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <a class="btn btn-primary btn-block" ng-cloak ng-show="createMode" ng-click="createMode = false">Cancel</a>

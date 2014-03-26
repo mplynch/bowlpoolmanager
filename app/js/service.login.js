@@ -64,8 +64,8 @@ angular.module('myApp.service.login', ['firebase', 'myApp.service.firebase'])
       }])
 
    .factory('profileCreator', ['firebaseRef', '$timeout', function(firebaseRef, $timeout) {
-      return function(id, email, callback) {
-         firebaseRef('users/'+id).set({email: email, name: firstPartOfEmail(email)}, function(err) {
+      return function(id, email, name, callback) {
+         firebaseRef('users/'+id).set({email: email, name: name}, function(err) {
             //err && console.error(err);
             if( callback ) {
                $timeout(function() {
@@ -73,16 +73,5 @@ angular.module('myApp.service.login', ['firebase', 'myApp.service.firebase'])
                })
             }
          });
-
-         function firstPartOfEmail(email) {
-            return ucfirst(email.substr(0, email.indexOf('@'))||'');
-         }
-
-         function ucfirst (str) {
-            // credits: http://kevin.vanzonneveld.net
-            str += '';
-            var f = str.charAt(0).toUpperCase();
-            return f + str.substr(1);
-         }
       }
    }]);

@@ -1,0 +1,285 @@
+{
+    "year" : "2013",
+    "bowls": [
+        {
+            "name": "Gildan New Mexico",
+            "location": "Albuquerque, NM",
+            "time": "14:00",
+            "date": "2013-12-21",
+            "team1": "Colorado State",
+            "team2": "Washington State"
+        },
+        {
+            "name": "Royal Purple Las Vegas",
+            "location": "Las Vegas, NV",
+            "time": "15:30",
+            "date": "2013-12-21",
+            "team1": "USC",
+            "team2": "Fresno State"
+        },
+        {
+            "name": "Famous Idaho Potato ",
+            "location": "Boise, ID",
+            "time": "17:30",
+            "date": "2013-12-21",
+            "team1": "San Diego State",
+            "team2": "Buffalo"
+        },
+        {
+            "name": "R+L Carriers New Orleans",
+            "location": "New Orleans, LA",
+            "time": "21:00",
+            "date": "2013-12-21",
+            "team1": "Louisiana-Lafayette",
+            "team2": "Tulane"
+        },
+        {
+            "name": "Beef 'O' Brady's St. Petersburg",
+            "location": "St. Petersburg, FL",
+            "time": "14:00",
+            "date": "2013-12-23",
+            "team1": "East Carolina",
+            "team2": "Ohio"
+        },
+        {
+            "name": "Sheraton Hawaii",
+            "location": "Honolulu, HI",
+            "time": "20:00",
+            "date": "2013-12-24",
+            "team1": "Oregon State",
+            "team2": "Boise State"
+        },
+        {
+            "name": "Little Caesars Pizza",
+            "location": "Detroit, MI",
+            "time": "18:00",
+            "date": "2013-12-26",
+            "team1": "Pittsburgh",
+            "team2": "Bowling Green"
+        },
+        {
+            "name": "S.D. County Credit Union Poinsettia",
+            "location": "San Diego, CA",
+            "time": "21:30",
+            "date": "2013-12-26",
+            "team1": "Utah State",
+            "team2": "Northern Illinois"
+        },
+        {
+            "name": "Military Bowl Presented By Northrop Grumman",
+            "location": "Annapolis, MD",
+            "time": "14:30",
+            "date": "2013-12-27",
+            "team1": "Marshall",
+            "team2": "Maryland"
+        },
+        {
+            "name": "Texas",
+            "location": "Houston, TX",
+            "time": "16:00",
+            "date": "2013-12-27",
+            "team1": "Syracuse",
+            "team2": "Minnesota"
+        },
+        {
+            "name": "Fight Hunger",
+            "location": "San Francisco, CA",
+            "time": "21:30",
+            "date": "2013-12-27",
+            "team1": "Washington",
+            "team2": "BYU"
+        },
+        {
+            "name": "New Era Pinstripe",
+            "location": "Bronx, NY",
+            "time": "12:00",
+            "date": "2013-12-28",
+            "team1": "Notre Dame",
+            "team2": "Rutgers"
+        },
+        {
+            "name": "Belk",
+            "location": "Charlotte, NC",
+            "time": "15:20",
+            "date": "2013-12-28",
+            "team1": "North Carolina",
+            "team2": "Cincinnati"
+        },
+        {
+            "name": "Russell Athletic",
+            "location": "Orlando, FL",
+            "time": "18:45",
+            "date": "2013-12-28",
+            "team1": "Louisville",
+            "team2": "Miami"
+        },
+        {
+            "name": "Buffalo Wild Wings",
+            "location": "Tempe, AZ",
+            "time": "22:15",
+            "date": "2013-12-28",
+            "team1": "Kansas State",
+            "team2": "Michigan"
+        },
+        {
+            "name": "Bell Helicopter Armed Forces",
+            "location": "Fort Worth, TX",
+            "time": "23:45",
+            "date": "2013-12-30",
+            "team1": "Navy",
+            "team2": "Middle Tennessee"
+        },
+        {
+            "name": "Franklin American Mortgage Music City",
+            "location": "Nashville, TN",
+            "time": "15:15",
+            "date": "2013-12-30",
+            "team1": "Ole Miss",
+            "team2": "Georgia Tech"
+        },
+        {
+            "name": "Valero Alamo",
+            "location": "San Antonio, TX",
+            "time": "18:45",
+            "date": "2013-12-30",
+            "team1": "Oregon",
+            "team2": "Texas"
+        },
+        {
+            "name": "National University Holiday",
+            "location": "San Diego, CA",
+            "time": "22:15",
+            "date": "2013-12-30",
+            "team1": "Texas Tech",
+            "team2": "Arizona State"
+        },
+        {
+            "name": "AdvoCare V100",
+            "location": "Shreveport, LA",
+            "time": "12:30",
+            "date": "2013-12-31",
+            "team1": "Arizona",
+            "team2": "Boston College"
+        },
+        {
+            "name": "Hyundai Sun",
+            "location": "El Paso, TX",
+            "time": "14:00",
+            "date": "2013-12-31",
+            "team1": "UCLA",
+            "team2": "Virginia Tech"
+        },
+        {
+            "name": "AutoZone Liberty",
+            "location": "Memphis, TN",
+            "time": "16:00",
+            "date": "2013-12-31",
+            "team1": "Mississippi State",
+            "team2": "Rice"
+        },
+        {
+            "name": "Chick-fil-A",
+            "location": "Atlanta, GA",
+            "time": "20:00",
+            "date": "2013-12-31",
+            "team1": "Texas A&M",
+            "team2": "Duke"
+        },
+        {
+            "name": "TaxSlayer.com Gator",
+            "location": "Jacksonville, FL",
+            "time": "12:00",
+            "date": "2014-1-1",
+            "team1": "Nebraska",
+            "team2": "Georgia"
+        },
+        {
+            "name": "Heart of Dallas",
+            "location": "Dallas, TX",
+            "time": "12:00",
+            "date": "2014-1-1",
+            "team1": "North Texas",
+            "team2": "UNLV"
+        },
+        {
+            "name": "Capital One",
+            "location": "Orlando, FL",
+            "time": "13:00",
+            "date": "2014-1-1",
+            "team1": "South Carolina",
+            "team2": "Wisconsin"
+        },
+        {
+            "name": "Outback",
+            "location": "Tampa, FL",
+            "time": "13:00",
+            "date": "2014-1-1",
+            "team1": "LSU",
+            "team2": "Iowa"
+        },
+        {
+            "name": "Rose Bowl Game presented by VIZIO",
+            "location": "Pasadena, CA",
+            "time": "17:00",
+            "date": "2014-1-1",
+            "team1": "Michigan State",
+            "team2": "Stanford"
+        },
+        {
+            "name": "Tostitos Fiesta",
+            "location": "Glendale, AZ",
+            "time": "20:30",
+            "date": "2014-1-1",
+            "team1": "UCF",
+            "team2": "Baylor"
+        },
+        {
+            "name": "Allstate Sugar",
+            "location": "New Orleans, LA",
+            "time": "20:30",
+            "date": "2014-1-2",
+            "team1": "Oklahoma",
+            "team2": "Alabama"
+        },
+        {
+            "name": "Discover Orange",
+            "location": "Miami, FL",
+            "time": "20:30",
+            "date": "2014-1-3",
+            "team1": "Clemson",
+            "team2": "Ohio State"
+        },
+        {
+            "name": "AT&T Cotton",
+            "location": "Arlington, TX",
+            "time": "19:30",
+            "date": "2014-1-3",
+            "team1": "Missouri",
+            "team2": "Oklahoma State"
+        },
+        {
+            "name": "BBVA Compass",
+            "location": "Birmingham, AL",
+            "time": "13:00",
+            "date": "2014-1-4",
+            "team1": "Vanderbilt",
+            "team2": "Houston"
+        },
+        {
+            "name": "GoDaddy",
+            "location": "Mobile, AL",
+            "time": "21:00",
+            "date": "2014-1-5",
+            "team1": "Arkansas State",
+            "team2": "Ball State"
+        },
+        {
+            "name": "VIZIO BCS National Championship",
+            "location": "Pasadena, CA",
+            "time": "20:30",
+            "date": "2014-1-6",
+            "team1": "Florida State",
+            "team2": "Auburn "
+        }
+    ]
+}

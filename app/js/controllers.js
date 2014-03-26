@@ -20,6 +20,19 @@ angular.module('myApp.controllers', [])
             };
         }])
 
+    .controller('BowlsCtrl', ['$scope', '$location', 'syncData', 'firebaseRef',
+        function ($scope, $location, syncData, firebaseRef) {
+            $scope.currentSeason = null;
+
+            $scope.setCurrentSeason = function (season) {
+                $scope.bowls = syncData('seasons/' + season.$id + '/bowls/');
+
+                $scope.currentSeason = season;
+            };
+
+            $scope.seasons = syncData('seasons');
+        }])
+
     .controller('HomeCtrl',  ['$scope',
         function ($scope) {
 
@@ -27,41 +40,42 @@ angular.module('myApp.controllers', [])
 
     .controller('LoginCtrl', ['$scope', 'loginService', '$location',
         function($scope, loginService, $location) {
+            $scope.name = null;
             $scope.email = null;
             $scope.pass = null;
             $scope.confirm = null;
             $scope.createMode = false;
 
             $scope.login = function(cb) {
-                $scope.err = null;
-                if( !$scope.email ) {
-                    $scope.err = 'Please enter an email address';
+                if (!$scope.email ) {
+                    $alert.$danger('Please enter an email address');
                 }
-                else if( !$scope.pass ) {
-                    $scope.err = 'Please enter a password';
+                else if (!$scope.pass ) {
+                    $alert.$danger('Please enter a password');
                 }
                 else {
                     loginService.login($scope.email, $scope.pass, function(err, user) {
-                        $scope.err = err? err + '' : null;
-                        if( !err ) {
+                        if (err)
+                            $alert.danger(err);
+
+                        else
                             cb && cb(user);
-                        }
                     });
                 }
             };
 
             $scope.createAccount = function() {
-                $scope.err = null;
-                if( assertValidLoginAttempt() ) {
+                if (assertValidLoginAttempt() ) {
                     loginService.createAccount($scope.email, $scope.pass, function(err, user) {
-                        if( err ) {
-                            $scope.err = err? err + '' : null;
+                        if (err) {
+                            $alert.danger(err);
                         }
+
                         else {
                             // must be logged in before I can write to my profile
                             $scope.login(function() {
-                                loginService.createProfile(user.uid, user.email);
-                                $location.path('/account');
+                                loginService.createProfile(user.uid, user.email, $scope.name);
+                                $location.path('/pools');
                             });
                         }
                     });
@@ -69,180 +83,32 @@ angular.module('myApp.controllers', [])
             };
 
             function assertValidLoginAttempt() {
-                if( !$scope.email ) {
-                    $scope.err = 'Please enter an email address';
+                if (!$scope.email) {
+                    alert.$danger('Please enter an email address');
                 }
-                else if( !$scope.pass ) {
-                    $scope.err = 'Please enter a password';
+                else if (!$scope.pass) {
+                    $alert.danger('Please enter a password');
                 }
-                else if( $scope.pass !== $scope.confirm ) {
-                    $scope.err = 'Passwords do not match';
+                else if ($scope.pass !== $scope.confirm) {
+                    $alert.danger('Passwords do not match');
+                }
+                else if (!$scope.name) {
+                    $alert.$danger('Please enter your name');
                 }
                 return !$scope.err;
             }
         }])
 
-    .controller('AccountCtrl', ['$scope', 'loginService', 'syncData', '$location',
-        function($scope, loginService, syncData, $location) {
-            syncData(['players', $scope.auth.user.uid]).$bind($scope, 'player');
-
-            $scope.logout = function() {
-                loginService.logout();
-            };
-
-            $scope.oldpass = null;
-            $scope.newpass = null;
-            $scope.confirm = null;
-
-            $scope.reset = function() {
-                $scope.err = null;
-                $scope.msg = null;
-            };
-
-            $scope.updatePassword = function() {
-                $scope.reset();
-                loginService.changePassword(buildPwdParms());
-            };
-
-            function buildPwdParms() {
-                return {
-                    email: $scope.auth.user.email,
-                    oldpass: $scope.oldpass,
-                    newpass: $scope.newpass,
-                    confirm: $scope.confirm,
-                    callback: function(err) {
-                        if( err ) {
-                            $scope.err = err;
-                        }
-                        else {
-                            $scope.oldpass = null;
-                            $scope.newpass = null;
-                            $scope.confirm = null;
-                            $scope.msg = 'Password updated!';
-                        }
-                    }
-                }
-            }
-
-        }])
-
-    .controller('LoginCtrl2', ['$scope', '$location', 'loginService', 'syncData', '$alert',
-        function ($scope, $location, loginService, syncData, $alert) {
-            $scope.$on("$destroy", function (event, val) {
-                $alert.$clear();
-            });
-
-            var bpmRef = new Firebase(bpmSettings.bpmURL);
-            $scope.auth = $firebaseSimpleLogin(bpmRef);
-
-
-            var errorHandler = function (error) {
-                console.error(error);
-
-                switch (error.code) {
-                    case 'EMAIL_TAKEN':
-                        $alert.$danger('Specified email address is already in use');
-                        break;
-                    case 'INVALID_USER':
-                    case 'INVALID_PASSWORD':
-                        $alert.$danger('Wrong email and password combination');
-                        break;
-                    case 'INVALID_EMAIL':
-                        $alert.$danger('Invalid email address');
-                        break;
-                    case 'PASSWORD_MISMATCH':
-                        $alert.$danger('Passwords do not match');
-                        break;
-                    default:
-                }
-            };
-
-            $scope.resetPassword = function () {
-                console.log('method disabled: resetPassword');
-
-                /*
-                 console.log('attempting to send password reset email');
-
-                 $scope.auth.$sendPasswordResetEmail($scope.player.email)
-                 .then(function() {
-                 console.log('password reset email sent');
-                 $alert.$success('Password reset email sent!');
-                 },
-                 function(error) {
-                 errorHandler(error);
-                 });
-                 */
-            };
-
-            $scope.signIn = function () {
-                console.log('attempting to sign in');
-
-                $scope.auth.$login('password', {
-                    email: $scope.player.email,
-                    password: $scope.player.password,
-                    rememberMe: $scope.player.rememberMe
-                }).then(function (user) {
-                        console.log('logged in as ', user.email);
-
-                        $alert.$clear();
-
-                        $location.path('/pools');
-                    },
-                    function (error) {
-                        errorHandler(error);
-                    });
-            };
-
-            $scope.signOut = function () {
-                $scope.auth.$logout();
-                $location.path('/');
-            };
-
-            $scope.signUp = function () {
-                console.log('attempting to register');
-
-                if ($scope.player.password != $scope.player.confirm_password) {
-                    errorHandler({code: 'PASSWORD_MISMATCH', message: 'Passwords do not match'});
-                    return;
-                }
-
-                $scope.auth.$createUser($scope.player.email, $scope.player.password, false)
-                    .then(function (user) {
-                        var playerRef = new Firebase(bpmSettings.bpmURL + '/players/' + user.uid);
-                        var player = $firebase(playerRef);
-                        var password = $scope.player.password;
-                        delete $scope.player.password; // Don't store the password
-                        delete $scope.player.confirm_password; // Don't store the password
-                        player.$set($scope.player); // Store the player
-                        console.log('created user ' + user.uid);
-
-                        $scope.auth.$login('password', {
-                            email: $scope.player.email,
-                            password: password,
-                            rememberMe: false
-                        }).then(function (user) {
-                                console.log('logged in as ', user.email);
-
-                                $alert.$clear();
-
-                                $location.path('/pools');
-                            },
-                            function (error) {
-                                errorHandler(error);
-                            });
-                    },
-                    function (error) {
-                        errorHandler(error);
-                    });
-            };
-        }])
-
-    .controller('MainCtrl', ['$scope', '$location',
-        function ($scope, $location) {
+    .controller('MainCtrl', ['$scope', '$location', 'loginService',
+        function ($scope, $location, loginService) {
 
             $scope.navClass = function (page) {
                 var currentRoute = $location.path();
                 return page === currentRoute ? 'active' : '';
+            };
+
+            $scope.logout = function() {
+                loginService.logout();
             };
 
             $scope.viewTerms = function () {
@@ -256,14 +122,6 @@ angular.module('myApp.controllers', [])
                     }
                 });
             };
-
-            $scope.$onRootScope('$firebaseSimpleLogin:login', function () {
-
-            });
-
-            $scope.$onRootScope('$firebaseSimpleLogin:logout', function () {
-                console.log('clearing current user');
-            });
         }])
 
     .controller('PicksCtrl', ['$scope', 'syncData',
@@ -271,37 +129,37 @@ angular.module('myApp.controllers', [])
             $scope.picks = syncData('picks');
         }])
 
-    .controller('PlayerCtrl', ['$scope', 'syncData', '$modal',
+    .controller('UserCtrl', ['$scope', 'syncData', '$modal',
         function ($scope, synData, $modal) {
 
 
-            console.log('listing players');
-            $scope.players = syncData('players');
-            $scope.players.$bind($scope, "remotePlayers");
-            console.log('player list received');
+            console.log('listing users');
+            $scope.users = syncData('users');
+            $scope.users.$bind($scope, "remoteUsers");
+            console.log('user list received');
 
-            $scope.view = function (player) {
+            $scope.view = function (user) {
                 var modalInstance = $modal.open({
-                    templateUrl: 'partials/player.html',
+                    templateUrl: 'partials/user.html',
                     controller: ModalDetailCtrl,
                     resolve: {
                         items: function () {
-                            return player;
+                            return user;
                         }
                     }
                 });
             };
 
             $scope.$onRootScope('$firebaseSimpleLogin:logout', function () {
-                console.log('clearing players');
-                $scope.players = null;
+                console.log('clearing users');
+                $scope.users = null;
             });
         }])
 
     .controller('PoolCtrl',  ['$scope', '$location', 'syncData', 'firebaseRef', '$modal',
         function ($scope, $location, syncData, firebaseRef, $modal) {
 
-            var playerPools = syncData('players/' + $scope.auth.user.uid + '/pools/');
+            var userPools = syncData('users/' + $scope.auth.user.uid + '/pools/');
             $scope.pools = syncData('pools');
 
             $scope.add = function () {
@@ -322,7 +180,7 @@ angular.module('myApp.controllers', [])
                     pool.managers = { };
                     pool.managers[$scope.auth.user.uid] = "true";
                     $scope.pools.$add(pool).then(function(newPoolRef) {
-                        firebaseRef('/players/' + $scope.auth.user.uid + '/pools/' + newPoolRef.name()).set(true);
+                        firebaseRef('/users/' + $scope.auth.user.uid + '/pools/' + newPoolRef.name()).set(true);
                         console.log('pool added');
                         $location.path('/pools/' + newPoolRef.name());
                     });
@@ -340,10 +198,21 @@ angular.module('myApp.controllers', [])
             });
         }])
 
-    .controller('PoolDetailCtrl',  ['$scope', '$routeParams', 'syncData',
-        function ($scope, $routeParams, syncData) {
+    .controller('PoolDetailCtrl',  ['$scope', '$routeParams', 'syncData', 'firebaseRef',
+        function ($scope, $routeParams, syncData, firebaseRef) {
 
             $scope.pool = syncData('/pools/' + $routeParams.id);
+
+            $scope.pool.$on("loaded", function() {
+                if ($scope.pool.managers[$scope.auth.user.uid])
+                    $scope.isManager = true;
+            });
+
+            $scope.save = function() {
+                // TODO: Validate pool
+
+                $scope.pool.$save();
+            };
         }])
 
     .controller('ProfileCtrl', ['$scope', '$location', 'syncData', '$alert',
@@ -352,22 +221,55 @@ angular.module('myApp.controllers', [])
                 $alert.$clear();
             });
 
-            syncData(['players', $scope.auth.user.uid]).$bind($scope, 'player');
+            $scope.oldpass = null;
+            $scope.newpass = null;
+            $scope.confirm = null;
+
+            syncData(['users', $scope.auth.user.uid]).$bind($scope, 'user');
 
             $scope.save = function () {
-                $scope.player.$save()
+                $scope.user.$save()
                     .then(function () {
                         console.log('profile saved');
-                        $alert.$success("Saved!");
+                        $alert.$success('Saved!');
                     },
                     function (error) {
-
+                        $alert.$danger('Failed to save profile: ' + error.message);
                     });
             };
 
+            $scope.reset = function() {
+                $scope.err = null;
+                $scope.msg = null;
+            };
+
+            $scope.updatePassword = function() {
+                $scope.reset();
+                loginService.changePassword(buildPwdParms());
+            };
+
+            function buildPwdParms() {
+                return {
+                    email: $scope.auth.user.email,
+                    oldpass: $scope.oldpass,
+                    newpass: $scope.newpass,
+                    confirm: $scope.confirm,
+                    callback: function(err) {
+                        if (err) {
+                            $scope.err = err;
+                        }
+                        else {
+                            $scope.oldpass = null;
+                            $scope.newpass = null;
+                            $scope.confirm = null;
+                            $scope.msg = 'Password updated!';
+                        }
+                    }
+                }
+            }
             $scope.$onRootScope('$firebaseSimpleLogin:logout', function () {
-                console.log('clearing player');
-                $scope.player = null;
+                console.log('clearing user');
+                $scope.user = null;
             });
         }])
 

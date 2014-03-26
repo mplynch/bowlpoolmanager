@@ -1,15 +1,19 @@
 {
     "rules": {
+        "bowls": {
+            ".read": "auth != null",
+            ".write": "auth != null"
+        },
         "picks": {
-            "$playerId": {
-                ".read": "$playerId == auth.uid",
-                ".write": "$playerId == auth.uid"
+            "$userId": {
+                ".read": "$userId == auth.uid",
+                ".write": "$userId == auth.uid"
             }
         },
-        "players": {
-            "$player": {
+        "users": {
+            "$user": {
                 ".read": "auth != null",
-                ".write": "$player == auth.uid"
+                ".write": "$user == auth.uid"
             }
         },
         "pools": {
@@ -17,6 +21,10 @@
             "$pool": {
                 ".write": "!data.exists() || data.child('managers').hasChild(auth.uid) == true"
             }
+        },
+        "seasons": {
+            ".read": "auth != null",
+            ".write": "false"
         }
     }
 }
