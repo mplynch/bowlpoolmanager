@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('myApp.controllers', [])
-    .controller('AlertCtrl',  ['$scope', '$alert',
+    .controller('AlertCtrl', ['$scope', '$alert',
         function ($scope, $alert) {
             $scope.alerts = $alert.$alerts();
 
@@ -20,9 +20,16 @@ angular.module('myApp.controllers', [])
             };
         }])
 
-    .controller('BowlsCtrl', ['$scope', '$location', 'syncData', 'firebaseRef',
-        function ($scope, $location, syncData, firebaseRef) {
+    .controller('BowlsCtrl', ['$scope', '$location', 'syncData', '$modal', '$alert',
+        function ($scope, $location, syncData, $modal, $alert) {
             $scope.currentSeason = null;
+
+            $scope.openCalendar = function ($event) {
+                $event.preventDefault();
+                $event.stopPropagation();
+
+                $scope.opened = true;
+            };
 
             $scope.setCurrentSeason = function (season) {
                 $scope.bowls = syncData('seasons/' + season.$id + '/bowls/');
@@ -30,31 +37,57 @@ angular.module('myApp.controllers', [])
                 $scope.currentSeason = season;
             };
 
+            $scope.remove = function (bowl) {
+                bowl.$remove();
+            };
+
+            $scope.edit = function (bowl) {
+                $scope.selectedBowl = syncData('seasons/' + $scope.currentSeason.$id + '/bowls/' + bowl.$id);
+
+                var modalInstance = $modal.open({
+                    templateUrl: 'partials/bowls.edit.html',
+                    controller: 'ModalEditorCtrl',
+                    resolve: {
+                        items: function () {
+                            return $scope.selectedBowl;
+                        }
+                    }});
+
+                modalInstance.result.then(function (result) {
+                    $scope.selectedBowl.$save().then(function () {
+                            $alert.$success('Saved bowl!')
+                        },
+                        function () {
+                            $alert.$danger('Failed to save bowl!');
+                        })
+                });
+            };
+
             $scope.seasons = syncData('seasons');
         }])
 
-    .controller('HomeCtrl',  ['$scope',
+    .controller('HomeCtrl', ['$scope',
         function ($scope) {
 
         }])
 
     .controller('LoginCtrl', ['$scope', 'loginService', '$location',
-        function($scope, loginService, $location) {
+        function ($scope, loginService, $location) {
             $scope.name = null;
             $scope.email = null;
             $scope.pass = null;
             $scope.confirm = null;
             $scope.createMode = false;
 
-            $scope.login = function(cb) {
-                if (!$scope.email ) {
+            $scope.login = function (cb) {
+                if (!$scope.email) {
                     $alert.$danger('Please enter an email address');
                 }
-                else if (!$scope.pass ) {
+                else if (!$scope.pass) {
                     $alert.$danger('Please enter a password');
                 }
                 else {
-                    loginService.login($scope.email, $scope.pass, function(err, user) {
+                    loginService.login($scope.email, $scope.pass, function (err, user) {
                         if (err)
                             $alert.danger(err);
 
@@ -64,16 +97,16 @@ angular.module('myApp.controllers', [])
                 }
             };
 
-            $scope.createAccount = function() {
-                if (assertValidLoginAttempt() ) {
-                    loginService.createAccount($scope.email, $scope.pass, function(err, user) {
+            $scope.createAccount = function () {
+                if (assertValidLoginAttempt()) {
+                    loginService.createAccount($scope.email, $scope.pass, function (err, user) {
                         if (err) {
                             $alert.danger(err);
                         }
 
                         else {
                             // must be logged in before I can write to my profile
-                            $scope.login(function() {
+                            $scope.login(function () {
                                 loginService.createProfile(user.uid, user.email, $scope.name);
                                 $location.path('/pools');
                             });
@@ -107,7 +140,7 @@ angular.module('myApp.controllers', [])
                 return page === currentRoute ? 'active' : '';
             };
 
-            $scope.logout = function() {
+            $scope.logout = function () {
                 loginService.logout();
             };
 
@@ -129,34 +162,7 @@ angular.module('myApp.controllers', [])
             $scope.picks = syncData('picks');
         }])
 
-    .controller('UserCtrl', ['$scope', 'syncData', '$modal',
-        function ($scope, synData, $modal) {
-
-
-            console.log('listing users');
-            $scope.users = syncData('users');
-            $scope.users.$bind($scope, "remoteUsers");
-            console.log('user list received');
-
-            $scope.view = function (user) {
-                var modalInstance = $modal.open({
-                    templateUrl: 'partials/user.html',
-                    controller: ModalDetailCtrl,
-                    resolve: {
-                        items: function () {
-                            return user;
-                        }
-                    }
-                });
-            };
-
-            $scope.$onRootScope('$firebaseSimpleLogin:logout', function () {
-                console.log('clearing users');
-                $scope.users = null;
-            });
-        }])
-
-    .controller('PoolCtrl',  ['$scope', '$location', 'syncData', 'firebaseRef', '$modal',
+    .controller('PoolCtrl', ['$scope', '$location', 'syncData', 'firebaseRef', '$modal',
         function ($scope, $location, syncData, firebaseRef, $modal) {
 
             var userPools = syncData('users/' + $scope.auth.user.uid + '/pools/');
@@ -169,17 +175,17 @@ angular.module('myApp.controllers', [])
 
                 var modalInstance = $modal.open({
                     templateUrl: 'partials/pools.create.html',
-                    controller: ModalEditorCtrl,
+                    controller: ModalCreateCtrl,
                     resolve: {
                         items: function () {
                             return newPool;
                         }
                     }});
 
-                modalInstance.result.then(function(pool) {
+                modalInstance.result.then(function (pool) {
                     pool.managers = { };
                     pool.managers[$scope.auth.user.uid] = "true";
-                    $scope.pools.$add(pool).then(function(newPoolRef) {
+                    $scope.pools.$add(pool).then(function (newPoolRef) {
                         firebaseRef('/users/' + $scope.auth.user.uid + '/pools/' + newPoolRef.name()).set(true);
                         console.log('pool added');
                         $location.path('/pools/' + newPoolRef.name());
@@ -198,17 +204,17 @@ angular.module('myApp.controllers', [])
             });
         }])
 
-    .controller('PoolDetailCtrl',  ['$scope', '$routeParams', 'syncData', 'firebaseRef',
+    .controller('PoolDetailCtrl', ['$scope', '$routeParams', 'syncData', 'firebaseRef',
         function ($scope, $routeParams, syncData, firebaseRef) {
 
             $scope.pool = syncData('/pools/' + $routeParams.id);
 
-            $scope.pool.$on("loaded", function() {
+            $scope.pool.$on("loaded", function () {
                 if ($scope.pool.managers[$scope.auth.user.uid])
                     $scope.isManager = true;
             });
 
-            $scope.save = function() {
+            $scope.save = function () {
                 // TODO: Validate pool
 
                 $scope.pool.$save();
@@ -238,12 +244,12 @@ angular.module('myApp.controllers', [])
                     });
             };
 
-            $scope.reset = function() {
+            $scope.reset = function () {
                 $scope.err = null;
                 $scope.msg = null;
             };
 
-            $scope.updatePassword = function() {
+            $scope.updatePassword = function () {
                 $scope.reset();
                 loginService.changePassword(buildPwdParms());
             };
@@ -254,7 +260,7 @@ angular.module('myApp.controllers', [])
                     oldpass: $scope.oldpass,
                     newpass: $scope.newpass,
                     confirm: $scope.confirm,
-                    callback: function(err) {
+                    callback: function (err) {
                         if (err) {
                             $scope.err = err;
                         }
@@ -267,23 +273,24 @@ angular.module('myApp.controllers', [])
                     }
                 }
             }
+
             $scope.$onRootScope('$firebaseSimpleLogin:logout', function () {
                 console.log('clearing user');
                 $scope.user = null;
             });
         }])
 
-    .controller('SettingsCtrl',  ['$scope', 'syncData',
+    .controller('SettingsCtrl', ['$scope', 'syncData',
         function ($scope, syncData) {
 
         }])
 
-    .controller('SetupCtrl',  ['$scope', 'syncData',
+    .controller('SetupCtrl', ['$scope', 'syncData',
         function ($scope, syncData) {
 
         }])
 
-    .controller('TeamCtrl',  ['$scope', 'syncData', '$modal',
+    .controller('TeamCtrl', ['$scope', 'syncData', '$modal',
         function ($scope, syncData, $modal) {
 
             console.log('listing teams');
@@ -314,7 +321,46 @@ angular.module('myApp.controllers', [])
             });
 
 
+        }])
+
+    .controller('UserCtrl', ['$scope', 'syncData', '$modal',
+        function ($scope, syncData, $modal) {
+
+
+            console.log('listing users');
+            $scope.users = syncData('users');
+            $scope.users.$bind($scope, "remoteUsers");
+            console.log('user list received');
+
+            $scope.view = function (user) {
+                var modalInstance = $modal.open({
+                    templateUrl: 'partials/user.html',
+                    controller: ModalDetailCtrl,
+                    resolve: {
+                        items: function () {
+                            return user;
+                        }
+                    }
+                });
+            };
+
+            $scope.$onRootScope('$firebaseSimpleLogin:logout', function () {
+                console.log('clearing users');
+                $scope.users = null;
+            });
         }]);
+
+var ModalCreateCtrl = function ($scope, $modalInstance, items, $alert) {
+    $scope.item = items;
+
+    $scope.ok = function () {
+        $modalInstance.close($scope.item);
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+};
 
 var ModalDetailCtrl = function ($scope, $modalInstance, items) {
     if (items)

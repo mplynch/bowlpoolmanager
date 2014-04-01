@@ -26,7 +26,8 @@
             </thead>
             <tbody>
             <tr ng-repeat="bowl in bowls | orderByPriority">
-                <td>{{bowl.name}}</td>
+                <!--<td>{{bowl.name}}</td>-->
+                <td><a ng-click="edit(bowl)">{{bowl.name}}</a></td>
                 <td>{{bowl.date | date : 'medium'}}</td>
                 <td>{{bowl.location}}</td>
                 <td>{{bowl.team1}}</td>

@@ -1,0 +1,64 @@
+<div class="panel panel-default" ng-controller="BowlsCtrl" ng-show="item">
+    <div class="panel-heading">
+        <h2 class="panel-title">Edit Bowl</h2>
+    </div>
+    <div class="panel-body">
+        <form name="itemForm" class="form-horizontal">
+            <div class="control-group">
+                <label class="control-label" for="name">Name</label>
+
+                <div class="controls">
+                    <input type="text" name="name" id="name" ng-model="item.name" class="form-control" required>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="team1">Team 1</label>
+
+                <div class="controls">
+                    <input type="text" name="team1" id="team1" ng-model="item.team1" class="form-control" required>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="team2">Team 2</label>
+
+                <div class="controls">
+                    <input type="text" name="team2" id="team2" ng-model="item.team2" class="form-control" required>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="location">Location</label>
+
+                <div class="controls">
+                    <input type="text" name="location" id="location" ng-model="item.location" class="form-control"
+                           required>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="date">Date</label>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="input-group">
+                            <input id="date" type="text" class="form-control" datepicker-popup="MM-dd-yyyy"
+                                   ng-model="item.date" is-open="opened" ng-required="true" close-text="Close"
+                                   show-button-bar="false"/>
+              <span class="input-group-btn">
+                <button class="btn btn-default" ng-click="openCalendar($event)">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+              </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer">
+        <div class="control-group">
+            <div class="controls">
+                <button class="btn btn-primary" ng-click="ok()">Save</button>
+                <button class="btn" ng-click="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
