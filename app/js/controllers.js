@@ -23,6 +23,7 @@ angular.module('myApp.controllers', [])
     .controller('BowlsCtrl', ['$scope', '$location', 'syncData', '$modal', '$alert',
         function ($scope, $location, syncData, $modal, $alert) {
             $scope.currentSeason = null;
+            $scope.teams = syncData('teams');
 
             $scope.openCalendar = function ($event) {
                 $event.preventDefault();

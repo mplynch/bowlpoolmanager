@@ -30,8 +30,8 @@
                 <td><a ng-click="edit(bowl)">{{bowl.name}}</a></td>
                 <td>{{bowl.date | date : 'medium'}}</td>
                 <td>{{bowl.location}}</td>
-                <td>{{bowl.team1}}</td>
-                <td>{{bowl.team2}}</td>
+                <td>{{teams[bowl.team1].name}}</td>
+                <td>{{teams[bowl.team2].name}}</td>
             </tr>
             </tbody>
         </table>
