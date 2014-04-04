@@ -295,7 +295,7 @@ angular.module('myApp.controllers', [])
         function ($scope, syncData, $modal) {
 
             console.log('listing teams');
-            syncData(['teams']).$bind($scope, 'teams');
+            $scope.teams = syncData(['teams']);
             console.log('team list received');
 
             $scope.view = function (team) {
@@ -308,12 +308,6 @@ angular.module('myApp.controllers', [])
                         }
                     }
                 });
-
-                /*modalInstance.result.then(function (selectedItem) {
-                 $scope.selected = selectedItem;
-                 }, function () {
-                 $log.info('Modal dismissed at: ' + new Date());
-                 });*/
             };
 
             $scope.$onRootScope('$firebaseSimpleLogin:logout', function () {
