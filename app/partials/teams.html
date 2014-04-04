@@ -4,7 +4,7 @@
     </div>
     <div class="panel-body">
         <ul class="unstyled">
-            <li ng-repeat="team in teams | orderByPriority">
+            <li ng-repeat="team in teams | orderByPriority | orderBy:'+name'">
                 <a ng-model="team.$priority" ng-click="view(team)">{{team.name}}</a>
             </li>
         </ul>

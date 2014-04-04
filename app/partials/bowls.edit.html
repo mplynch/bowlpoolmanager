@@ -17,7 +17,7 @@
                 <div class="controls">
                     <!--<input type="text" name="team1" id="team1" ng-model="item.team1" class="form-control" required>-->
                     <select class="form-control" name="team1" id="team1" ng-model="item.team1">
-                        <option ng-repeat="team in teams | orderByPriority" value="{{team.$id}}">{{team.name}}</option>
+                        <option ng-repeat="team in teams | orderByPriority | orderBy:'name'" value="{{team.$id}}">{{team.name}}</option>
                     </select>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                 <div class="controls">
                     <!--<input type="text" name="team2" id="team2" ng-model="item.team2" class="form-control" required>-->
                     <select class="form-control" name="team1" id="team1" ng-model="item.team2">
-                        <option ng-repeat="team in teams | orderByPriority" value="{{team.$id}}">{{team.name}}</option>
+                        <option ng-repeat="team in teams | orderByPriority | orderBy:'name'" value="{{team.$id}}">{{team.name}}</option>
                     </select>
                 </div>
             </div>
