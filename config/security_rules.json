@@ -1,5 +1,9 @@
 {
     "rules": {
+        "admins": {
+            ".read": "$userId == auth.uid",
+            ".write": "false"
+        },
         "bowls": {
             ".read": "auth != null",
             ".write": "auth != null"
@@ -11,6 +15,7 @@
             }
         },
         "users": {
+            ".read": "auth != null",
             "$user": {
                 ".read": "auth != null",
                 ".write": "$user == auth.uid"
@@ -24,7 +29,11 @@
         },
         "seasons": {
             ".read": "auth != null",
-            ".write": "false"
+            ".write": "root.child('admins').hasChild(auth.uid) == true"
+        },
+        "teams": {
+            ".read": "auth != null",
+            ".write": "auth != null"
         }
     }
 }
