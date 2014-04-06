@@ -320,11 +320,8 @@ angular.module('myApp.controllers', [])
 
     .controller('UserCtrl', ['$scope', 'syncData', '$modal',
         function ($scope, syncData, $modal) {
-
-
             console.log('listing users');
             $scope.users = syncData('users');
-            $scope.users.$bind($scope, "remoteUsers");
             console.log('user list received');
 
             $scope.view = function (user) {
