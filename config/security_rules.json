@@ -4,10 +4,6 @@
             ".read": "auth != null",
             ".write": "false"
         },
-        "bowls": {
-            ".read": "auth != null",
-            ".write": "auth != null"
-        },
         "picks": {
             "$userId": {
                 ".read": "$userId == auth.uid",
@@ -26,7 +22,7 @@
         },
         "teams": {
             ".read": "auth != null",
-            ".write": "auth != null"
+            ".write": "root.child('admins').hasChild(auth.uid) == true"
         },
         "users": {
             ".read": "auth != null",
