@@ -3,7 +3,7 @@
 // Declare app level module which depends on filters, and services
 angular.module('myApp.config', [])
 
-   .constant('version', '0.1')
+   .constant('version', '0.1.0')
 
    // where to redirect users if they need to authenticate (see module.routeSecurity)
    .constant('loginRedirectPath', '/login')
