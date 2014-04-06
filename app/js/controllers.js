@@ -72,8 +72,8 @@ angular.module('myApp.controllers', [])
 
         }])
 
-    .controller('LoginCtrl', ['$scope', 'loginService', '$location',
-        function ($scope, loginService, $location) {
+    .controller('LoginCtrl', ['$scope', 'loginService', '$location', '$alert',
+        function ($scope, loginService, $location, $alert) {
             $scope.name = null;
             $scope.email = null;
             $scope.pass = null;
@@ -90,7 +90,7 @@ angular.module('myApp.controllers', [])
                 else {
                     loginService.login($scope.email, $scope.pass, function (err, user) {
                         if (err)
-                            $alert.danger(err);
+                            errorHandler(err);
 
                         else
                             cb && cb(user);
@@ -102,7 +102,7 @@ angular.module('myApp.controllers', [])
                 if (assertValidLoginAttempt()) {
                     loginService.createAccount($scope.email, $scope.pass, function (err, user) {
                         if (err) {
-                            $alert.danger(err);
+                            errorHandler(err);
                         }
 
                         else {
@@ -118,18 +118,37 @@ angular.module('myApp.controllers', [])
 
             function assertValidLoginAttempt() {
                 if (!$scope.email) {
-                    alert.$danger('Please enter an email address');
+                    $alert.$danger('Please enter an email address');
                 }
                 else if (!$scope.pass) {
-                    $alert.danger('Please enter a password');
+                    $alert.$danger('Please enter a password');
                 }
                 else if ($scope.pass !== $scope.confirm) {
-                    $alert.danger('Passwords do not match');
+                    $alert.$danger('Passwords do not match');
                 }
                 else if (!$scope.name) {
                     $alert.$danger('Please enter your name');
                 }
                 return !$scope.err;
+            }
+
+            function errorHandler(error) {
+                switch (error.code) {
+                    case 'EMAIL_TAKEN':
+                        $alert.$danger('Specified email address is already in use');
+                        break;
+                    case 'INVALID_USER':
+                    case 'INVALID_PASSWORD':
+                        $alert.$danger('Wrong email and password combination');
+                        break;
+                    case 'INVALID_EMAIL':
+                        $alert.$danger('Invalid email address');
+                        break;
+                    case 'PASSWORD_MISMATCH':
+                        $alert.$danger('Passwords do not match');
+                        break;
+                    default:
+                }
             }
         }])
 
