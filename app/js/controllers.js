@@ -167,7 +167,7 @@ angular.module('myApp.controllers', [])
             $scope.viewTerms = function () {
                 var modalInstance = $modal.open({
                     templateUrl: 'partials/terms.html',
-                    controller: ModalDetailCtrl,
+                    controller: ModalViewCtrl,
                     resolve: {
                         items: function () {
                             return null;
@@ -319,8 +319,8 @@ angular.module('myApp.controllers', [])
 
             $scope.view = function (team) {
                 var modalInstance = $modal.open({
-                    templateUrl: 'partials/team.html',
-                    controller: ModalDetailCtrl,
+                    templateUrl: 'partials/teams.view.html',
+                    controller: ModalViewCtrl,
                     resolve: {
                         items: function () {
                             return team;
@@ -345,8 +345,8 @@ angular.module('myApp.controllers', [])
 
             $scope.view = function (user) {
                 var modalInstance = $modal.open({
-                    templateUrl: 'partials/user.html',
-                    controller: ModalDetailCtrl,
+                    templateUrl: 'partials/users.edit.html',
+                    controller: ModalViewCtrl,
                     resolve: {
                         items: function () {
                             return user;
@@ -373,7 +373,7 @@ var ModalCreateCtrl = function ($scope, $modalInstance, items, $alert) {
     };
 };
 
-var ModalDetailCtrl = function ($scope, $modalInstance, items) {
+var ModalViewCtrl = function ($scope, $modalInstance, items) {
     if (items)
         $scope.item = items;
 

@@ -32,7 +32,7 @@ angular.module('myApp.routes', ['ngRoute'])
             $routeProvider.when('/users/:id', {
                 authRequired: true, // must authenticate before viewing this page
                 controller : 'UserCtrl',
-                templateUrl : 'partials/user.html'
+                templateUrl : 'partials/users.edit.html'
             });
 
             $routeProvider.when('/pools', {
@@ -44,7 +44,7 @@ angular.module('myApp.routes', ['ngRoute'])
             $routeProvider.when('/pools/:id', {
                 authRequired: true, // must authenticate before viewing this page
                 controller : 'PoolDetailCtrl',
-                templateUrl : 'partials/pools.detail.html'
+                templateUrl : 'partials/pools.view.html'
             });
 
             $routeProvider.when('/profile', {
@@ -78,7 +78,7 @@ angular.module('myApp.routes', ['ngRoute'])
             $routeProvider.when('/teams/:id', {
                 authRequired: true, // must authenticate before viewing this page
                 controller : 'TeamCtrl',
-                templateUrl : 'partials/team.html'
+                templateUrl : 'partials/teams.view.html'
             });
 
             $routeProvider.otherwise({
