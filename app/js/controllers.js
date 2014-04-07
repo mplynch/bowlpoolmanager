@@ -217,6 +217,16 @@ angular.module('myApp.controllers', [])
                 $location.path('/pools/' + pool.$id);
             };
 
+            $scope.isMyPool = function(pool) {
+                for (var id in userPools)
+                {
+                    if (pool.$id == id)
+                        return true;
+                }
+
+                return false;
+            };
+
             $scope.$onRootScope('$firebaseSimpleLogin:logout', function () {
                 console.log('clearing pools');
                 $scope.pools = null;

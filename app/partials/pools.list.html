@@ -9,7 +9,7 @@
 <hr />
 <div class="well">
     <ul class="unstyled">
-        <li ng-repeat="pool in pools | orderByPriority">
+        <li ng-repeat="pool in pools | orderByPriority | filter : isMyPool">
             <a ng-model="pool.$priority" ng-click="view(pool)">{{pool.name}}</a>
         </li>
     </ul>
