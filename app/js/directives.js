@@ -10,11 +10,12 @@ angular.module('myApp.directives', []).
 
     }])
 
-    .directive('bpmShowAdmin', function ($rootScope, syncData) {
+    .directive('bpmShowAdmin', function ($rootScope, syncData, waitForAuth) {
         return {
             restrict: 'A',
             compile: function (el, attr) {
-                $rootScope.$on("$firebaseSimpleLogin:login", function () {
+                el.addClass('hide');
+                waitForAuth.then(function() {
                     console.log('checking for admin rights');
                     var admins = syncData('admins');
 
