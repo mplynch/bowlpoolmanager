@@ -1,0 +1,24 @@
+<h1>Invitations</h1>
+<hr/>
+<div class="well">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <td>Name</td>
+                <td>Action</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="pool in pools | orderByPriority | inArrayMatchByField:invitations:'$id' | orderBy:'name'"
+                class="table-striped">
+                <td>{{pool.name}}</td>
+                <td>
+                    <button class="btn btn-primary" ng-click="accept(pool)">Accept</button>
+                    <button class="btn btn-danger" ng-click="reject(pool)">Reject</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

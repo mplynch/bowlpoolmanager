@@ -17,6 +17,12 @@ angular.module('myApp.routes', ['ngRoute'])
                 templateUrl : 'partials/bowls.list.html'
             });
 
+            $routeProvider.when('/invitations', {
+                authRequired: true, // must authenticate before viewing this page
+                controller : 'InvitationsCtrl',
+                templateUrl : 'partials/invitations.list.html'
+            });
+
             $routeProvider.when('/picks', {
                 authRequired: true, // must authenticate before viewing this page
                 controller : 'PicksCtrl',

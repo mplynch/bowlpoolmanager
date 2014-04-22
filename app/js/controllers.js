@@ -43,19 +43,19 @@ angular.module('myApp.controllers', [])
             };
 
             $scope.edit = function (bowl) {
-                $scope.selectedBowl = syncData('seasons/' + $scope.currentSeason.$id + '/bowls/' + bowl.$id);
+                var selectedBowl = syncData('seasons/' + $scope.currentSeason.$id + '/bowls/' + bowl.$id);
 
                 var modalInstance = $modal.open({
                     templateUrl: 'partials/bowls.edit.html',
                     controller: 'ModalEditorCtrl',
                     resolve: {
                         items: function () {
-                            return $scope.selectedBowl;
+                            return selectedBowl;
                         }
                     }});
 
                 modalInstance.result.then(function (result) {
-                    $scope.selectedBowl.$save().then(function () {
+                    selectedBowl.$save().then(function () {
                             $alert.$success('Saved bowl!')
                         },
                         function () {
@@ -70,6 +70,25 @@ angular.module('myApp.controllers', [])
     .controller('HomeCtrl', ['$scope',
         function ($scope) {
 
+        }])
+
+    .controller('InvitationsCtrl', ['$scope', 'syncData', 'firebaseRef', '$alert',
+        function ($scope, syncData, firebaseRef, $alert) {
+            $scope.invitations = syncData('invitations/' + $scope.auth.user.uid);
+
+            $scope.pools = syncData('pools');
+
+            $scope.accept = function(pool) {
+                firebaseRef('/users/' + $scope.auth.user.uid + '/pools/' + pool.$id).set(true);
+                $scope.invitations.$remove(pool.$id);
+                $alert.$success('Invitation accepted!');
+                console.log('invitation accepted');
+            };
+
+            $scope.reject = function(pool) {
+                $scope.invitations.$remove(pool.$id);
+                console.log('invitation removed');
+            };
         }])
 
     .controller('LoginCtrl', ['$scope', 'loginService', '$location', '$alert',
@@ -182,11 +201,12 @@ angular.module('myApp.controllers', [])
             $scope.picks = syncData('picks');
         }])
 
-    .controller('PoolCtrl', ['$scope', '$location', 'syncData', 'firebaseRef', '$modal',
-        function ($scope, $location, syncData, firebaseRef, $modal) {
+    .controller('PoolCtrl', ['$scope', '$location', 'syncData', '$firebase', 'firebaseRef', '$modal',
+        function ($scope, $location, syncData, $firebase, firebaseRef, $modal) {
 
-            var userPools = syncData('users/' + $scope.auth.user.uid + '/pools/');
-            $scope.pools = syncData('pools');
+            var userPools = firebaseRef('users/' + $scope.auth.user.uid + '/pools/');
+            var allPools = firebaseRef('pools');
+            $scope.pools = $firebase(Firebase.util.intersection(userPools, allPools));
 
             $scope.add = function () {
                 console.log('adding a pool');
@@ -204,27 +224,16 @@ angular.module('myApp.controllers', [])
 
                 modalInstance.result.then(function (pool) {
                     pool.managers = { };
-                    pool.managers[$scope.auth.user.uid] = "true";
+                    pool.managers[$scope.auth.user.uid] = true;
+                    pool.users = { };
+                    pool.users[$scope.auth.user.uid] = true;
+
                     $scope.pools.$add(pool).then(function (newPoolRef) {
                         firebaseRef('/users/' + $scope.auth.user.uid + '/pools/' + newPoolRef.name()).set(true);
                         console.log('pool added');
                         $location.path('/pools/' + newPoolRef.name());
                     });
                 });
-            };
-
-            $scope.view = function (pool) {
-                $location.path('/pools/' + pool.$id);
-            };
-
-            $scope.isMyPool = function(pool) {
-                for (var id in userPools)
-                {
-                    if (pool.$id == id)
-                        return true;
-                }
-
-                return false;
             };
 
             $scope.$onRootScope('$firebaseSimpleLogin:logout', function () {
@@ -234,20 +243,63 @@ angular.module('myApp.controllers', [])
             });
         }])
 
-    .controller('PoolDetailCtrl', ['$scope', '$routeParams', 'syncData', 'firebaseRef',
-        function ($scope, $routeParams, syncData, firebaseRef) {
+    .controller('PoolDetailCtrl', ['$scope', '$routeParams', 'syncData', '$firebase', 'firebaseRef', '$modal', '$alert',
+        function ($scope, $routeParams, syncData, $firebase, firebaseRef, $modal, $alert) {
 
             $scope.pool = syncData('/pools/' + $routeParams.id);
+
+            $scope.bowls = syncData('/seasons/2013/bowls');
+
+            $scope.teams = syncData('/teams');
+
+            $scope.poolUsers = syncData('/pools/' + $routeParams.id + '/users');
+
+            $scope.users = syncData('/users');
 
             $scope.pool.$on("loaded", function () {
                 if ($scope.pool.managers[$scope.auth.user.uid])
                     $scope.isManager = true;
             });
 
-            $scope.save = function () {
-                // TODO: Validate pool
+            $scope.edit = function (pool) {
+                var selectedPool = syncData('pools/' + pool.$id);
 
-                $scope.pool.$save();
+                var modalInstance = $modal.open({
+                    templateUrl: 'partials/pools.edit.html',
+                    controller: 'ModalEditorCtrl',
+                    resolve: {
+                        items: function () {
+                            return selectedPool;
+                        }
+                    }});
+
+                modalInstance.result.then(function (result) {
+                    selectedPool.$save().then(function () {
+                            $alert.$success('Saved pool!')
+                        },
+                        function () {
+                            $alert.$danger('Failed to save pool!');
+                        });
+                });
+            };
+
+            $scope.invite = function () {
+                console.log('saving invite');
+                var invitation = syncData('/invitations/' + $scope.user.$id + '/' + $scope.pool.$id);
+
+                invitation["date"] = new Date();
+                invitation["sentBy"] = $scope.auth.user.uid;
+
+                invitation.$save();
+                console.log('invite saved');
+
+                $scope.poolUsers[$scope.user.$id] = true;
+                $scope.poolUsers.$save();
+                console.log('pool users saved');
+            };
+
+            $scope.setCurrentUser = function ($item, $model, $label) {
+              $scope.user = $item;
             };
         }])
 
@@ -261,9 +313,10 @@ angular.module('myApp.controllers', [])
             $scope.newpass = null;
             $scope.confirm = null;
 
-            syncData(['users', $scope.auth.user.uid]).$bind($scope, 'user');
+            $scope.user = syncData(['users', $scope.auth.user.uid]);
 
             $scope.save = function () {
+                $scope.user.$priority = $scope.user.email;
                 $scope.user.$save()
                     .then(function () {
                         console.log('profile saved');

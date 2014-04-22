@@ -1,16 +1,101 @@
-<div class="panel panel-default">
-    <form name="poolForm" class="form-horizontal" ng-controller="PoolCtrl">
-        <div class="panel-heading">
-            <h2 class="panel-title">{{pool.name}}</h2>
+<h1>{{pool.name}}</h1>
+<div ng-show="isManager">
+    <div class="btn-toolbar" role="toolbar">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                Manage
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a ng-click="edit(pool)">Edit</a></li>
+            </ul>
         </div>
-        <div class="panel-body">
-
-            <div ng-show="isManager">
-                <!-- Manager menu goes here -->
+    </div>
+</div>
+<hr/>
+<div class="well">
+    <tabset>
+        <tab heading="Leaderboard">
+            <!-- TODO: Replace table with ng-grid -->
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Points</td>
+                        <td>Available</td>
+                        <td>Possible</td>
+                        <td>Correct</td>
+                        <td>Incorrect</td>
+                        <td>% Correct</td>
+                        <td>Blended</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="user in users | orderByPriority | inArrayMatchByField:poolUsers:'$id' | orderBy:'name'"
+                        class="table-striped">
+                        <td>{{user.name}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-
-            <!-- UI for everyone here -->
-
-        </div>
-    </form>
+        </tab>
+        <tab heading="Results">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <td>Date</td>
+                        <td>Time (EST)</td>
+                        <td>Bowl</td>
+                        <td>Location</td>
+                        <td>Matchup</td>
+                        <td>Winner</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="bowl in bowls | orderByPriority | orderBy:'date'" class="table-striped">
+                        <td>{{bowl.date | date: 'shortDate'}}</td>
+                        <td>{{bowl.date | date: 'shortTime'}}</td>
+                        <td>{{bowl.name}}</td>
+                        <td>{{bowl.location}}</td>
+                        <td class="center">{{teams[bowl.team1].name}} vs. {{teams[bowl.team2].name}}</td>
+                        <td>{{bowl.winner}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </tab>
+        <tab heading="Picks">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <td>Date</td>
+                        <td>Time (EST)</td>
+                        <td>Matchup</td>
+                        <td>Winner</td>
+                        <td ng-repeat="user in users | orderByPriority | inArrayMatchByField:poolUsers:'$id' | orderBy:'name'">{{user.name}}</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="bowl in bowls | orderByPriority | orderBy:'date'" class="table-striped">
+                        <td>{{bowl.date | date: 'shortDate'}}</td>
+                        <td>{{bowl.date | date: 'shortTime'}}</td>
+                        <td class="center">{{teams[bowl.team1].name}} vs. {{teams[bowl.team2].name}}</td>
+                        <td>{{bowl.winner}}</td>
+                        <td ng-repeat="user in users | orderByPriority | inArrayMatchByField:poolUsers:'$id' | orderBy:'name'">0</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </tab>
+    </tabset>
 </div>

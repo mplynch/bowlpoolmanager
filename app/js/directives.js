@@ -15,12 +15,14 @@ angular.module('myApp.directives', []).
             restrict: 'A',
             compile: function (el, attr) {
                 el.addClass('hide');
-                waitForAuth.then(function() {
+                waitForAuth.then(function () {
                     console.log('checking for admin rights');
                     var admins = syncData('admins');
 
-                    admins.$on("loaded", function() {
+                    admins.$on("loaded", function () {
                         var isAdmin = $rootScope.auth.user.uid in admins;
+                        if (isAdmin)
+                            console.log('admin rights granted!')
                         el.toggleClass('hide', !isAdmin);
                     });
                 });

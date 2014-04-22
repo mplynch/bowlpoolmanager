@@ -65,7 +65,7 @@ angular.module('myApp.service.login', ['firebase', 'myApp.service.firebase'])
 
    .factory('profileCreator', ['firebaseRef', '$timeout', function(firebaseRef, $timeout) {
       return function(id, email, name, callback) {
-         firebaseRef('users/'+id).set({email: email, name: name}, function(err) {
+         firebaseRef('users/'+id).setWithPriority({email: email, name: name}, name, function(err) {
             //err && console.error(err);
             if( callback ) {
                $timeout(function() {

@@ -1,16 +1,14 @@
 <h1>Pools</h1>
-<nav class="navbar navbar-inverse" role="navigation">
-    <ul class="nav navbar-nav">
-        <li>
-            <a ng-click="add()">Create a pool</a>
-        </li>
-    </ul>
-</nav>
-<hr />
+<div class="btn-toolbar" role="toolbar">
+    <div class="btn-group">
+            <button type="button" class="btn btn-default" ng-click="add()">Create a Pool</button>
+    </div>
+</div>
+<hr/>
 <div class="well">
     <ul class="unstyled">
-        <li ng-repeat="pool in pools | orderByPriority | filter : isMyPool">
-            <a ng-model="pool.$priority" ng-click="view(pool)">{{pool.name}}</a>
+        <li ng-repeat="pool in pools | orderByPriority">
+            <a ng-model="pool.$priority" href="#/pools/{{pool.$id}}">{{pool.name}}</a>
         </li>
     </ul>
 </div>

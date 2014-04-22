@@ -4,6 +4,14 @@
             ".read": "auth != null",
             ".write": "false"
         },
+        "invitations": {
+            ".read": true,
+            "$userId": {
+                "$poolId" : {
+                    ".write": "(!data.exists() && root.child('pools').child($poolId).child('managers').hasChild(auth.uid)) || $userId == auth.uid"
+                }
+            }
+        },
         "picks": {
             "$userId": {
                 ".read": "$userId == auth.uid",

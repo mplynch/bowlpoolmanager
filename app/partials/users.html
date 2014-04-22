@@ -4,8 +4,8 @@
     </div>
     <div class="panel-body">
         <ul class="unstyled">
-            <li ng-repeat="user in users | orderByPriority">
-                <a ng-model="user.$priority" ng-click="view(user)">{{user.name}}</a>
+            <li ng-repeat="user in users | orderByPriority | orderBy:'name'">
+                <a ng-model="user" ng-click="view(user)">{{user.name}}</a>
             </li>
         </ul>
     </div>
