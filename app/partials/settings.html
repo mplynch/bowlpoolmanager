@@ -1,4 +1,30 @@
 <h1>Settings</h1>
-<hr />
+<hr/>
 <div class="well">
+    <form class="form-horizontal" ng-submit="save()">
+        <fieldset>
+            <div class="row" ng-show="settings.currentSeason">
+                <div class="col-xs-2">
+                    <div class="form-group">
+                        <label class="control-label" for="currentSeason">Current Season</label>
+
+                        <div class="controls">
+                            <select id="currentSeason" ng-model="settings.currentSeason" class="form-control">
+                                <option ng-repeat="season in seasons | orderByPriority" value="{{season.$id}}"
+                                        ng-selected="{{settings.currentSeason == season.$id}}">
+                                    {{season.$id}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="controls">
+                    <button class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
 </div>

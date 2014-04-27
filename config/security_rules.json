@@ -28,6 +28,10 @@
             ".read": "auth != null",
             ".write": "root.child('admins').hasChild(auth.uid) == true"
         },
+        "settings": {
+            ".read": "auth != null",
+            ".write": "root.child('admins').hasChild(auth.uid) == true"
+        },
         "teams": {
             ".read": "auth != null",
             ".write": "root.child('admins').hasChild(auth.uid) == true"

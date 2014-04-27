@@ -22,8 +22,16 @@ angular.module('myApp.controllers', [])
 
     .controller('BowlsCtrl', ['$scope', '$location', 'syncData', '$modal', '$alert',
         function ($scope, $location, syncData, $modal, $alert) {
-            $scope.currentSeason = null;
             $scope.teams = syncData('teams');
+
+            $scope.seasons = syncData('seasons');
+
+            $scope.settings = syncData('settings');
+
+            $scope.settings.$on("loaded", function() {
+                console.log('got current season: ' + $scope.settings.currentSeason);
+                $scope.setCurrentSeason($scope.settings.currentSeason);
+            });
 
             $scope.openCalendar = function ($event) {
                 $event.preventDefault();
@@ -33,7 +41,7 @@ angular.module('myApp.controllers', [])
             };
 
             $scope.setCurrentSeason = function (season) {
-                $scope.bowls = syncData('seasons/' + season.$id + '/bowls/');
+                $scope.bowls = syncData('seasons/' + season + '/bowls/');
 
                 $scope.currentSeason = season;
             };
@@ -64,7 +72,6 @@ angular.module('myApp.controllers', [])
                 });
             };
 
-            $scope.seasons = syncData('seasons');
         }])
 
     .controller('HomeCtrl', ['$scope',
@@ -303,6 +310,11 @@ angular.module('myApp.controllers', [])
             };
         }])
 
+    .controller('PreferencesCtrl', ['$scope', 'syncData',
+        function ($scope, syncData) {
+
+        }])
+
     .controller('ProfileCtrl', ['$scope', '$location', 'syncData', '$alert',
         function ($scope, $location, syncData, $alert) {
             $scope.$on("$destroy", function (event, val) {
@@ -363,9 +375,25 @@ angular.module('myApp.controllers', [])
             });
         }])
 
-    .controller('SettingsCtrl', ['$scope', 'syncData',
-        function ($scope, syncData) {
+    .controller('SettingsCtrl', ['$scope', 'syncData', '$alert',
+        function ($scope, syncData, $alert) {
+            console.log('getting seasons');
+            $scope.seasons = syncData('seasons');
 
+            console.log('getting settings');
+            $scope.settings = syncData('settings');
+
+            $scope.save = function() {
+                $scope.settings.$save().then(
+                    function() {
+                        $alert.$success('Settings saved!');
+                    },
+
+                    function(error) {
+                        $alert.$danger('An error occurred while saving settings: ' + error.message);
+                    }
+                )
+            };
         }])
 
     .controller('SetupCtrl', ['$scope', 'syncData',

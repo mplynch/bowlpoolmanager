@@ -6,7 +6,7 @@
         </button>
         <ul class="dropdown-menu" role="menu">
             <li ng-repeat="season in seasons | orderByPriority"><a
-                    ng-click="setCurrentSeason(season)">{{season.$id}}</a>
+                    ng-click="setCurrentSeason(season.$id)">{{season.$id}}</a>
             </li>
         </ul>
     </div>
@@ -14,7 +14,7 @@
 <hr/>
 <div class="well">
     <div ng-show="currentSeason">
-        <h3>{{currentSeason.$id}} Season</h3>
+        <h3>{{currentSeason.name}} Season</h3>
         <table class="table table-striped">
             <thead>
             <tr>

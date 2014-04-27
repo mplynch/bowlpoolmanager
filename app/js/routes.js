@@ -53,6 +53,12 @@ angular.module('myApp.routes', ['ngRoute'])
                 templateUrl : 'partials/pools.view.html'
             });
 
+            $routeProvider.when('/preferences', {
+                authRequired: true, // must authenticate before viewing this page
+                controller : '/PreferencesCtrl',
+                templateUrl: 'partials/preferences.html'
+            });
+
             $routeProvider.when('/profile', {
                 authRequired: true, // must authenticate before viewing this page
                 controller : 'ProfileCtrl',
@@ -62,8 +68,9 @@ angular.module('myApp.routes', ['ngRoute'])
             $routeProvider.when('/settings', {
                 authRequired: true, // must authenticate before viewing this page
                 controller : 'SettingsCtrl',
-                templateUrl: 'partials/settings.html'
+                templateUrl : 'partials/settings.html'
             });
+
             $routeProvider.when('/setup', {
                 authRequired: true, // must authenticate before viewing this page
                 controller : 'SetupCtrl',

@@ -1,14 +1,15 @@
 <div class="panel panel-default" ng-controller="PoolDetailCtrl" ng-show="pool">
     <div class="panel-body">
-        <div class="control-group">
-            <label class="control-label" for="name">Name</label>
-
-            <div class="controls">
-                <input type="text" name="name" id="name" ng-model="item.name" class="form-control" required>
-            </div>
-        </div>
-        <hr/>
         <tabset>
+            <tab heading="Basic Info">
+                <div class="control-group">
+                    <label class="control-label" for="name">Name</label>
+
+                    <div class="controls">
+                        <input type="text" name="name" id="name" ng-model="item.name" class="form-control" required>
+                    </div>
+                </div>
+            </tab>
             <tab heading="Users">
                 <div class="table-responsive">
                     <table class="table">
