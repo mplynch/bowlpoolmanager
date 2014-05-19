@@ -1,60 +1,69 @@
-(function() {
-    'use strict';
+'use strict';
 
-    /* Services */
+/* Services */
 
-    angular.module('myApp.services', ['myApp.service.login', 'myApp.service.firebase'])
+angular.module('myApp.services', ['myApp.service.login', 'myApp.service.firebase', 'waitForAuth', 'bpmWaitForAdmin'])
 
-        // put your services here!
-        // .service('serviceName', ['dependency', function(dependency) {}]);
+    .service('$alert', [function () {
 
-        .service('$alert', [function() {
+        var alerts = [];
 
-            var alerts = [];
+        var clearAlerts = function () {
+            alerts = [];
+        };
 
-            var clearAlerts = function() {
+        var closeAlert = function (index, clearOthers) {
+            alerts.splice(index, 1);
+        };
+
+        var createAlert = function (type, message, clearOthers) {
+            if (clearOthers)
                 alerts = [];
-            };
 
-            var closeAlert = function(index, clearOthers) {
-                alerts.splice(index, 1);
-            };
+            alerts.push({type: type, msg: message});
+        };
 
-            var createAlert = function(type, message, clearOthers) {
-                if (clearOthers)
-                    alerts = [];
+        var alertSuccess = function (message, clearOthers) {
+            clearOthers = clearOthers || true;
+            createAlert('success', message, clearOthers);
+        };
 
-                alerts.push({type: type, msg: message});
-            };
+        var alertInfo = function (message, clearOthers) {
+            clearOthers = clearOthers || true;
+            createAlert('info', message, clearOthers);
+        };
 
-            var alertSuccess = function(message, clearOthers) {
-                clearOthers = clearOthers || true;
-                createAlert('success', message, clearOthers);
-            };
+        var alertWarning = function (message, clearOthers) {
+            clearOthers = clearOthers || true;
+            createAlert('warning', message, clearOthers);
+        };
 
-            var alertInfo = function(message, clearOthers) {
-                clearOthers = clearOthers || true;
-                createAlert('info', message, clearOthers);
-            };
+        var alertDanger = function (message, clearOthers) {
+            clearOthers = clearOthers || true;
+            createAlert('danger', message, clearOthers);
+        };
 
-            var alertWarning = function(message,clearOthers) {
-                clearOthers = clearOthers || true;
-                createAlert('warning', message, clearOthers);
-            };
-
-            var alertDanger = function(message, clearOthers) {
-                clearOthers = clearOthers || true;
-                createAlert('danger', message, clearOthers);
-            };
-
-            return {
-                $alerts: function() { return alerts; },
-                $success: function(message, clearOthers) { return alertSuccess(message, clearOthers); },
-                $info: function(message, clearOthers) { return alertInfo(message, clearOthers); },
-                $warning: function(message, clearOthers) { return alertWarning(message, clearOthers); },
-                $danger: function(message, clearOthers) { return alertDanger(message, clearOthers); },
-                $clear: function() { return clearAlerts(); },
-                $close: function(index) { return closeAlert(index); }
-            };
-        }]);
-})();
+        return {
+            $alerts: function () {
+                return alerts;
+            },
+            $success: function (message, clearOthers) {
+                return alertSuccess(message, clearOthers);
+            },
+            $info: function (message, clearOthers) {
+                return alertInfo(message, clearOthers);
+            },
+            $warning: function (message, clearOthers) {
+                return alertWarning(message, clearOthers);
+            },
+            $danger: function (message, clearOthers) {
+                return alertDanger(message, clearOthers);
+            },
+            $clear: function () {
+                return clearAlerts();
+            },
+            $close: function (index) {
+                return closeAlert(index);
+            }
+        };
+    }]);
