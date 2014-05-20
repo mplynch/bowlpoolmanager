@@ -2,7 +2,7 @@
 
 /* Services */
 
-angular.module('myApp.services', ['myApp.service.login', 'myApp.service.firebase', 'waitForAuth', 'bpmWaitForAdmin'])
+angular.module('myApp.services', ['myApp.service.login', 'myApp.service.firebase', 'waitForAuth', 'bpmAdmin'])
 
     .service('$alert', [function () {
 

@@ -17,7 +17,7 @@ myApp.config(['$provide', function ($provide) {
     }]);
 }]);
 
-myApp.run(['loginService', '$rootScope', 'FBURL', 'bpmWaitForAdmin', function (loginService, $rootScope, FBURL, bpmWaitForAdmin) {
+myApp.run(['loginService', '$rootScope', 'FBURL', 'bpmAdmin', function (loginService, $rootScope, FBURL, bpmAdmin) {
     if (FBURL === 'https://INSTANCE.firebaseio.com') {
         // double-check that the app has been configured
         angular.element(document.body).html('<h1>Please configure app/js/config.js before running!</h1>');
@@ -30,7 +30,7 @@ myApp.run(['loginService', '$rootScope', 'FBURL', 'bpmWaitForAdmin', function (l
         $rootScope.auth = loginService.init('/login');
 
         // Set up admin rights monitoring
-        $rootScope.admin = bpmWaitForAdmin.init($rootScope.auth);
+        $rootScope.admin = bpmAdmin.init($rootScope.auth);
 
         $rootScope.FBURL = FBURL;
     }

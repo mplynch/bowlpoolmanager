@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('bpmWaitForAdmin', [])
+angular.module('bpmAdmin', [])
 
-    .service('bpmWaitForAdmin', function ($rootScope, syncData, waitForAuth) {
+    .service('bpmAdmin', function ($rootScope, syncData, waitForAuth) {
         return {
             init: function (auth) {
                 $rootScope.$on('$firebaseSimpleLogin:login', function (e, user) {
